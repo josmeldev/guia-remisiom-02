@@ -215,6 +215,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/obtener-datos-agricultores', [dataController::class, 'obtenerDatosAgricultores'])->name('obtenerDatosAgricultores');
 
+    Route::post('/verificar-ruc-transportista', [GuiaController::class, 'verificarRucTransportista'])->name('ruc.transportista');
+    Route::post('/verificar-ruc-agricultor', [GuiaController::class, 'verificarRucAgricultor'])->name('ruc.agricultor');
 });
 
 

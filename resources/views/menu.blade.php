@@ -79,6 +79,7 @@
                                         <tr>
                                             <th>N°</th>
                                             <th>RUC</th>
+                                            <th>Razón Social</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -88,6 +89,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td class="ruc-transportista">{{ $transportista->RUC }}</td>
+                                                <td>{{ $transportista->razon_social }}</td>
                                                 <td>
                                                     <button class="btn btn-info boton-copiar">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -114,6 +116,9 @@
                                                                 stroke-width="0" fill="currentColor" />
                                                         </svg>
                                                     </a>
+                                                    <button class="btn btn-info" onclick="consultarRUCTransportistaDesdeTD()">
+                                                Seleccionar
+                                            </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -128,7 +133,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModalTransportista">Cancelar</button>
 
                         </div>
                     </div>
@@ -169,6 +174,7 @@
                                     <tr>
                                         <th>N°</th>
                                         <th>RUC</th>
+                                        <th>Razón Social</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -178,6 +184,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td class="ruc-agricultor">{{ $agricultor->ruc }}</td>
+                                            <td>{{ $agricultor->razon_social }}</td>
                                             <td>
                                                 <button class="btn btn-info boton-copiar">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -204,6 +211,9 @@
                                                             stroke-width="0" fill="currentColor" />
                                                     </svg>
                                                 </a>
+                                                <button class="btn btn-info" onclick="consultarRUCAgricultorDesdeTD()">
+                                                Seleccionar
+                                            </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -214,7 +224,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModalAgricultor">Cancelar</button>
 
                         </div>
                     </div>
@@ -1408,5 +1418,64 @@
 <!-- AdminLTE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    
+    // tu código aquí
+     function consultarRUCTransportistaDesdeTD() {
+        var ruc = document.querySelector('.ruc-transportista').innerText.trim();
+    
+        $.ajax({
+            url: "{{ route('ruc.transportista') }}",
+            method: 'POST',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'ruc_transportista': ruc
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.error) {
+                    alert(response.error);
+                } else {
+                    document.getElementById('razonSocialRemTransport').value = response.razon_social;
+                    document.getElementById('direccionRemTransport').value = response.direccion;
+                    document.getElementById('rucRemTransport').value = response.RUC;
+                    document.getElementById('cerrarModalTransportista').click();
+                }
+            },
+            error: function (xhr) {
+                alert('Error al consultar el RUC.');
+            }
+        });
+    }
+
+    function consultarRUCAgricultorDesdeTD() {
+        var ruc = document.querySelector('.ruc-agricultor').innerText.trim();
+    
+        $.ajax({
+            url: "{{ route('ruc.agricultor') }}",
+            method: 'POST',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'ruc_agricultor': ruc
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.error) {
+                    alert(response.error);
+                } else {
+                    document.getElementById('razonSocialInput').value = response.razon_social;
+                    document.getElementById('direccionInput').value = response.direccion;
+                    document.getElementById('rucInput').value = response.ruc;
+                    document.getElementById('cerrarModalAgricultor').click();
+                }
+            },
+            error: function (xhr) {
+                alert('Error al consultar el RUC.');
+            }
+        });
+    }
+
+</script>
 
 @stop

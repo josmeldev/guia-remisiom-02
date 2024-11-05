@@ -335,4 +335,38 @@ class guiaController extends Controller
         return $pdf->download('guia_' . $guia->id . '.pdf');
     }
 
+    public function verificarRucTransportista(Request $request)
+    {
+        $ruc = $request->input('ruc_transportista');
+
+        $datos = Transportista::where('RUC', $ruc)->first();
+        if ($datos) {
+            return response()->json([
+                'razon_social' => $datos->razon_social,
+                'direccion' => $datos->direccion,
+                'RUC' => $datos->RUC,
+            ]);
+        } else {
+            return response()->json(['error' => 'No se encontraron datos para el RUC proporcionado'], 404);
+        }
+        
+    }
+
+    public function verificarRucAgricultor(Request $request)
+    {
+        $ruc = $request->input('ruc_agricultor');
+
+        $datos = Agricultor::where('ruc', $ruc)->first();
+        if ($datos) {
+            return response()->json([
+                'razon_social' => $datos->razon_social,
+                'direccion' => $datos->direccion,
+                'ruc' => $datos->ruc,
+            ]);
+        } else {
+            return response()->json(['error' => 'No se encontraron datos para el RUC proporcionado'], 404);
+        }
+        
+    }
+
 }

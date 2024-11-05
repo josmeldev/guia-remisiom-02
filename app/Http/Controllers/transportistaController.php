@@ -233,4 +233,6 @@ public function buscarTransportista(Request $request)
     return view('transportista.index', compact('transportistas', 'users', 'num_notificaciones', 'agricultores_deben', 'agricultores_no_deben'));
 }
 
+
+
 }
