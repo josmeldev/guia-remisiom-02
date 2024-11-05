@@ -184,13 +184,21 @@ class guiaController extends Controller
             Guia::create($validatedData);
 
             // Redireccionar al usuario a la página deseada después de guardar la guía de remisión
-            return redirect()->back()->with('success', '¡La guía de remisión se ha creado exitosamente!');
+            return response()->json([
+                'status' => 'success',
+                'message' => '¡La guía de remisión se ha creado exitosamente!'
+            ]);
+    
         } catch (QueryException $e) {
-            // Capturar excepciones de base de datos y manejarlas
-            return redirect()->back()->with('error', 'Error al guardar la guía de remisión: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error al guardar la guía de remisión: ' . $e->getMessage()
+            ], 422);
         } catch (\Exception $e) {
-            // Capturar otras excepciones y manejarlas
-            return redirect()->back()->with('error', 'Error desconocido al guardar la guía de remisión: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error desconocido al guardar la guía de remisión: ' . $e->getMessage()
+            ], 500);
         }
     }
 
