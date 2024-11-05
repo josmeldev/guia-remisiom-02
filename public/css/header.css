@@ -1,0 +1,70 @@
+
+.user-content {
+    top: calc(100% + 5px);
+    right: 18%;
+    width: 250px;
+    z-index: 1000;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+.notify {
+    margin-right: 20px;
+}
+
+
+
+    header {
+        background-color: #f8f9fa; /* Color de fondo del header */
+        height: 60px; /* Altura del header */
+        padding: 0 20px; /* Espaciado interno del header */
+        align-items: center; /* Alinear elementos verticalmente */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra del header */
+    }
+
+   
+
+    .buscar {
+        flex: 1; /* Ocupa el espacio restante */
+        display: flex; /* Utilizar flexbox */
+        align-items: center; /* Alinear elementos verticalmente */
+    }
+
+    .buscar input {
+        width: 200px; /* Ancho del campo de búsqueda */
+        padding: 8px; /* Espaciado interno del campo de búsqueda */
+        border: 1px solid #ced4da; /* Borde del campo de búsqueda */
+        border-radius: 4px; /* Radio de borde del campo de búsqueda */
+        margin-right: 10px; /* Espaciado a la derecha del campo de búsqueda */
+        margin-left: 20px
+    }
+
+    .buscar button {
+        background-color: #007bff; /* Color de fondo del botón de búsqueda */
+        color: #fff; /* Color del texto del botón de búsqueda */
+        border: none; /* Quitar borde del botón de búsqueda */
+        padding: 8px 15px; /* Espaciado interno del botón de búsqueda */
+        border-radius: 4px; /* Radio de borde del botón de búsqueda */
+        cursor: pointer; /* Cambiar cursor al pasar por encima del botón de búsqueda */
+    }
+
+    .notify, .user {
+        display: flex; /* Utilizar flexbox */
+        align-items: center; /* Alinear elementos verticalmente */
+        margin-left: 20px; /* Espaciado a la izquierda de los elementos de notificación y usuario */
+    }
+
+    .notify i, .user i {
+        font-size: 24px; /* Tamaño de fuente de los iconos de notificación y usuario */
+        margin-right: 10px; /* Espaciado a la derecha de los iconos de notificación y usuario */
+        cursor: pointer; /* Cambiar cursor al pasar por encima de los iconos de notificación y usuario */
+    }
+
+    .user img {
+        cursor: pointer;
+        width: 30px; /* Ancho de la imagen de usuario */
+        height: 30px; /* Altura de la imagen de usuario */
+        border-radius: 50%; /* Hacer la imagen de usuario circular */
+        margin-right: 10px; /* Espaciado a la derecha de la imagen de usuario */
+    }

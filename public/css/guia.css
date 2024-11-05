@@ -1,0 +1,74 @@
+
+
+:root {
+    --sidebar-width: 250px;
+    --color-general:rgb(3, 68, 54);
+    --color-boton:rgb(15, 143, 115);
+    --color-borde:rgb(4, 56, 44);
+    --color-style:rgb(5, 136, 5);
+    --color-text:rgb(2, 109, 77);
+    --font-text:Verdana, Geneva, Tahoma, sans-serif;
+    --font-title:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    --border-solid: 1px solid rgb(174, 238, 201);
+    --box-shadow: 1px 1px 2px 0px rgb(141, 143, 143);
+
+}
+#info-guia{
+
+    background-color: rgb(18, 114, 5);
+    border-width: 2px;
+    border: var(--border-solid);
+    border-style:groove;
+    box-shadow: var(--box-shadow);
+
+}
+#info-emi{
+
+    background-color: rgb(44, 202, 13);
+    border: var(--border-solid);
+    border-style:groove;
+    box-shadow: var(--box-shadow);
+}
+#info-today{
+    background-color: rgb(21, 219, 137);
+    border: var(--border-solid);
+    border-style:groove;
+    box-shadow: var(--box-shadow);
+
+}
+#info-other{
+    background-color: rgb(5, 121, 76);
+    border: var(--border-solid);
+    border-style:groove;
+    box-shadow: var(--box-shadow);
+
+}
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+select{
+    outline: 1px solid var(--color-style);
+}
+
+input[type="text"], input[type="date"]{
+    outline: 1px solid var(--color-style);
+}
+
+.btn-outline-success{
+    outline: 1px solid var(--color-style);
+}
+
+#consultarBtn, #consultarBtnRemTransport{
+    outline: 1px solid var(--color-style);
+}
+
+#icons-form{
+    outline: 1px solid var(--color-style);
+    color: white;
+}
+
+

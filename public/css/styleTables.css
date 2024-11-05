@@ -1,0 +1,53 @@
+
+    /* Estilos para la tabla */
+    .table-container {
+        display: none; /* Por defecto, oculta la tabla */
+        transition: opacity 2s; /* Transición suave de 2 segundos */
+    }
+
+    /* Estilos para el enlace "Más información" */
+    .small-box-footer {
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+        transition: color 3s; /* Transición suave del color durante 0.5 segundos */
+    }
+
+    .small-box-footer:hover {
+        color: gray; /* Cambia el color al pasar el ratón por encima */
+    }
+    td, th{
+        font-size: 14px;
+    }
+    thead{
+        background-color: rgb(6, 87, 39);
+        color: white;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .card-header h3.card-title {
+        text-align: center; /* Centra el texto horizontalmente */
+    }
+
+    th, td {
+        text-align: center; /* Centra el texto horizontalmente */
+        overflow: hidden;
+        border: solid 1px white;
+        text-overflow: ellipsis;
+    }
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .acciones{
+        width: 120px;
+    }
+
+
+
+
+
+
+
+
+

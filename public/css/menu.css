@@ -1,0 +1,78 @@
+
+:root {
+    --sidebar-width: 250px;
+    --color-general:rgb(3, 68, 54);
+    --color-boton:rgb(15, 143, 115);
+    --color-borde:rgb(4, 56, 44);
+    --color-style:rgb(15, 199, 45);
+    --color-text:rgb(2, 109, 77);
+    --font-text:Verdana, Geneva, Tahoma, sans-serif;
+    --font-title:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    --border-solid: 1px solid rgb(174, 238, 201);
+    --box-shadow: 1px 1px 2px 0px rgb(141, 143, 143);
+
+}
+#consultarBtn, #consultarBtnRemTransport{
+    outline: 1px solid var(--color-style);
+}
+
+#icons-form{
+    outline: 1px solid var(--color-style);
+    color: white;
+    background-color: rgb(15, 199, 45);
+}
+.hidden {
+    display: none !important;
+}
+.styled-heading {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: rgb(3, 68, 54) !important;
+    }
+    .styled-heading::before,
+    .styled-heading::after {
+        content: "";
+        flex: 1;
+        border-bottom: 2px solid rgb(3, 68, 54); /* Color y grosor de las líneas */
+        margin: 0 10px; /* Espacio entre las líneas y el texto */
+
+    }
+input[type="text"], input[type="date"], input[type="email"], select{
+    outline: 1px solid  var(--color-style);
+}
+
+select{
+    /* Cambiar el color de fondo */
+    background-color: #f2f2f2;
+    /* Cambiar el color del texto */
+    color: #34dd09;
+
+}
+
+select option:checked {
+    /* Cambiar el color de fondo */
+    background-color: #d1f098;
+    /* Cambiar el color del texto */
+    color: #32dd0f;
+}
+#datos-guia{
+    font-size: 12px;
+
+  }
+
+  #datos-guia strong{
+   color:rgb(0, 55, 128);
+   font-family: Arial, Helvetica, sans-serif;
+   display: flex;
+   text-align: center;
+
+  }
+
+  #datos-guia span{
+    color:rgb(9, 97, 197);
+   font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+
+   }
+

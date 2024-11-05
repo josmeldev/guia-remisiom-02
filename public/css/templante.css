@@ -1,0 +1,694 @@
+:root {
+    --sidebar-width: 250px;
+    --color-general:rgb(3, 68, 54);
+    --color-boton:rgb(15, 143, 115);
+    --color-borde:rgb(4, 56, 44);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 1rem 1px 0px;
+    background-color: var(--color-general);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    position: fixed;
+    top: 0;
+    height: 4rem;
+    border-bottom: solid 2px  var(--color-borde);
+
+}
+
+.hamburger {
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.line {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    margin-left: 1rem;
+
+}
+body {
+    margin: 0;
+    padding: 0;
+
+
+
+}
+
+.contenido {
+
+    width: 100%; /* Para que ocupe todo el ancho */
+    display: flex;
+    position: absolute;
+    background-color: #eef1f0;
+
+}
+
+.sidebar {
+    width: 17%; /* Ancho del sidebar */
+    background-color: var(--color-general); /* Color de fondo del sidebar */
+    position: relative;
+    height: 100vh;
+    max-height: calc(100vh - 4rem);
+    transition: width 0.3s ease-out; /* Transición suave de la anchura */
+    border-right: var(--color-borde) solid 2px;
+    overflow-y: auto; /* Permite el desplazamiento vertical dentro del sidebar */
+
+
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 0; /* Oculta la barra de scroll en navegadores webkit (Chrome, Safari, etc.) */
+}
+
+.sidebar.show-scrollbar::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de scroll cuando se muestra */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Color del thumb del scroll */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Color del thumb del scroll al pasar el cursor */
+}
+
+
+.content {
+    width: calc(100% - 2rem); /* Restamos el padding derecho e izquierdo del ancho total */
+    padding: 1rem 1rem;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+    box-sizing: border-box; /* Hace que el padding se incluya dentro del ancho total */
+}
+
+
+
+
+.sidebar ul {
+    list-style: none;
+
+
+
+}
+
+.sidebar li {
+    padding: 5px;
+    margin: 0 10px 0 10px;
+    text-align: start;
+
+
+
+}
+
+
+
+
+
+.menu-open .sidebar {
+    width: 5rem; /* Ancho mínimo cuando se colapsa */
+
+}
+.sidebar.collapsed .icon-text {
+    display: none;
+    color: white;
+    opacity: 0; /* Opacidad gradual para hacer desaparecer el texto */
+}
+.sidebar-link .icon-text {
+    margin-left: 0.5rem; /* Espacio entre el icono y el texto */
+    transition: opacity 0.3s ease-out; /* Transición suave de la opacidad */
+}
+
+.content.collapsed{
+    width: 100%;
+
+}
+.sidebar.collapsed .sidebar-link {
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: var(--color-boton);
+    border-radius: 5px;
+    border:solid 1px rgb(221, 219, 231);
+}
+
+
+
+    span{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
+    }
+
+    .sidebar a.active {
+    color: rgb(240, 236, 11); /* Color morado */
+    background-color: var(--color-boton);
+    border-radius: 5px;
+    border:solid 1px rgb(221, 219, 231);
+
+    }
+
+
+
+
+    .sidebar-text {
+        font-size: 18px; /* Tamaño de fuente del texto */
+        color: white; /* Cambiar el color del texto */
+    }
+
+
+
+
+    .sidebar-header {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    height: auto; /* Ajusta automáticamente la altura */
+
+
+    }
+
+
+
+
+    .sidebar-header img {
+        width: 10rem;
+
+        height: auto; /* Ajusta automáticamente la altura */
+        display: block; /* Para que ocupe todo el ancho */
+        border-radius: 10px;
+        margin-left:0 ;
+
+
+    }
+    .sidebar-title {
+        color: white;
+        margin-bottom: 0;
+    }
+
+    .list-unstyled {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .sidebar-link {
+        display: flex;
+        align-items: center; /* Alinear verticalmente */
+        height: 50px;
+        color: white; /* Color del texto del enlace */
+        transition: all 0.5s ease;
+        text-align: start;
+        transition: background-color 0.3s;
+    }
+
+    .sidebar a{
+        text-decoration: none;
+    }
+
+    .sidebar-icon {
+
+        font-size:25px; /* Tamaño de fuente de los iconos */
+    }
+    .sidebar ul {
+    padding: 0;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+    margin-top: 5px;
+
+
+
+}
+
+.sidebar ul li a {
+
+    text-decoration: none;
+    display: flex;
+    color:white;
+
+   padding: 0 5px 0 5px;
+}
+
+.sidebar.collapsed {
+    width: 7%;
+
+}
+
+
+
+
+
+    .sidebar li a:hover {
+        background-color: var(--color-boton);
+        color: white;
+
+        border-radius: 5px;
+
+    }
+
+
+    .sidebar li a:active {
+    background-color: var(--color-boton);
+    color: white;
+    border-radius: 5px;
+
+
+    }
+
+
+
+
+
+
+    header {
+
+    position: relative;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 2rem;
+
+}
+
+
+
+.buscar
+{
+    flex: 1; /* Ocupa el espacio restante */
+    display: flex; /* Utilizar flexbox */
+    align-items: center; /* Alinear elementos verticalmente */
+    margin-left: 13%;
+}
+
+    .buscar input {
+        width: 70%; /* Ancho del campo de búsqueda */
+        padding: 8px; /* Espaciado interno del campo de búsqueda */
+        border: 1px solid #ced4da; /* Borde del campo de búsqueda */
+        border-radius: 4px; /* Radio de borde del campo de búsqueda */
+        margin-right: 2%; /* Espaciado entre el campo de búsqueda y el botón de búsqueda */
+
+    }
+
+    .buscar button {
+        background-color: var(--color-boton); /* Color de fondo del botón de búsqueda */
+        color: #fff; /* Color del texto del botón de búsqueda */
+        border: none; /* Quitar borde del botón de búsqueda */
+        padding: 8px 15px; /* Espaciado interno del botón de búsqueda */
+        border-radius: 4px; /* Radio de borde del botón de búsqueda */
+        cursor: pointer; /* Cambiar cursor al pasar por encima del botón de búsqueda */
+    }
+
+.dropdown-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Añade una transición suave */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-submenu.show {
+    max-height: 300px; /* Altura máxima de despliegue */
+}
+
+
+
+
+.dropdown-submenu.show {
+    display: block;
+}
+
+.dropdown-item {
+    height: 40px;
+    display: block;
+    padding: 10px 20px;
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.5s;
+    justify-content: start;
+    align-items: center;
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-boton);
+}
+
+p {
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-size: 13px; /* Tamaño de fuente */
+color: #333; /* Color de texto */
+line-height: 1.6; /* Altura de línea */
+
+user-select: none;
+}
+
+/* Estilo para negritas dentro de párrafos */
+p strong {
+font-weight: bold; /* Negrita */
+user-select: none;
+
+}
+
+/* Estilo para el primer párrafo */
+.first-paragraph {
+font-size: 13px; /* Tamaño de fuente */
+user-select: none;
+}
+
+/* Estilo para el segundo párrafo */
+.second-paragraph {
+font-style: italic; /* Cursiva */
+user-select: none;
+}
+
+/* Estilo para el efecto de hover */
+.user-content p:hover
+{
+background-color: var(--color-boton);
+border-radius: 10px;
+width: 100%;
+height:auto ;
+
+}
+
+
+.user-content p{
+    padding: 0 1rem;
+    height: 30px;
+    color: white;
+}
+
+#user-content {
+    position: fixed;
+    top: 19rem;
+    right: 0;
+    transform: translate(-10%, -65%);
+    width: 250px;
+    background-color: rgb(3, 68, 54);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    display: none; /* Comienza oculto */
+    align-items: center;
+    padding: 1rem;
+    z-index: 9999; /* Aparece por encima de todo */
+    border: solid 1px #b8e2d4;
+}
+
+.user img {
+    cursor: pointer;
+    width: 40px; /* Ancho de la imagen de usuario */
+    height: 40px; /* Altura de la imagen de usuario */
+    border-radius: 50%; /* Hacer la imagen de usuario circular */
+    margin-left: 1rem;
+
+}
+
+.user{
+
+    display: flex;
+    justify-content: center;
+
+}
+
+#user-content img {
+    width: 6rem; /* Ancho de la imagen de usuario */
+    height: 6rem; /* Altura de la imagen de usuario */
+    border-radius: 50%; /* Hacer la imagen de usuario circular */
+
+}
+
+.user-div{
+background-color: rgb(4, 49, 39);
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+}
+
+.div-data{
+    gap: 1rem;
+    user-select: none;
+
+    padding: 0;
+}
+
+.div-data .user-name, .role, .user-email{
+
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+
+}
+
+.div-data .user-name{
+    display: flex;
+    justify-content: center;
+}
+.div-logout {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+   height: auto;
+
+}
+.div-logout:hover{
+    cursor: pointer;
+    background-color: var(--color-boton);
+    border-radius: 25px;
+}
+.div-logout:focus{
+    cursor: pointer;
+    background-color: var(--color-boton);
+    border-radius: 25px;
+}
+
+
+.panel {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 20rem;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    background-color: #068554; /* Verde */
+    color: white; /* Letras claras */
+    padding: 20px;
+    border: 1px solid #068554; /* Borde verde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* Aparece por encima de todo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+}
+
+
+.footer {
+    flex-grow: 1;
+    margin-top: 10rem;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #ffffff;
+    padding: 40px 0;
+    background: linear-gradient(to right, #075728, #0e9c09);
+}
+.footer a {
+    color: #ffffff;
+}
+.footer a:hover {
+    color: #c2ec06;
+    text-decoration: none;
+}
+.footer .social-icons i {
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+.footer .social-icons i:hover {
+    color: #c2ec06;
+}
+
+.dedication{
+color: #f5f10e;
+}
+
+.rights-r{
+    color: #e2e2d5;
+    }
+
+    .spinner-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 1000;
+    }
+
+    #errorMessage {
+        text-align: center;
+        color: red;
+        margin-top: 20px;
+    }
+
+    .error-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border: 1px solid red;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+    }
+
+    .error-container button {
+        margin-top: 10px;
+        padding: 5px 10px;
+    }
+
+
+    .notifications {
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .notification-item {
+        cursor: pointer;
+        position: relative;
+
+    }
+
+    .notification-popup ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .notification-popup li {
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .notification-popup  #first {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .notification-count {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        top: -5px;
+        right: -5px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 5px;
+        font-size: 12px;
+        border: solid 2px var(--color-general);
+    }
+
+    .notification-popup {
+        width: 250px;
+        font-size: 15px;
+        color: #075728;
+        right: 1.5rem;
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ccc;
+
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 10px;
+
+
+    }
+
+    .notification-popup.show {
+        display: block;
+        animation: grow 0.3s ease-in-out forwards;
+    }
+
+
+
+    @keyframes grow {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+    .notification-popup footer {
+        text-align: right;
+        padding: 10px 0;
+        border-top: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .notification-popup footer a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .notification-popup footer a:hover {
+        text-decoration: underline;
+    }
+    .hidden-content {
+        border-radius: 10px;
+        width: 200px;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        margin-left: -10rem; /* Alinea a la izquierda */
+        z-index: 1;
+    }
+    .conte {
+        position: relative;
+    }
+
+    .sidebar-header img {
+        height: 130px;
+        width: 130px;
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* White shadow for reflection */
+        transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+    }
+
+    .sidebar-header img:hover {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); /* Stronger reflection on hover */
+    }
