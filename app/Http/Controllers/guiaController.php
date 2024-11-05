@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\campo;
@@ -20,24 +21,24 @@ class guiaController extends Controller
 
 
     private function consultaPagosPeriodo($inicio_periodo, $fin_periodo)
-{
-    return DB::table('agricultors as a')
-        ->leftJoin('cargas as c', 'c.RUC_Agricultor', '=', 'a.id')
-        ->leftJoin('guias as g', 'g.carga_id', '=', 'c.id')
-        ->leftJoin('pagos as p', 'p.guia_id', '=', 'g.id')
-        ->select(
-            'a.id AS agricultor_id',
-            'a.razon_social AS agricultor_nombre',
-            DB::raw('COALESCE(SUM((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario), 0) AS total_devengado'),
-            DB::raw('COALESCE(SUM(p.adelanto), 0) AS adelanto_total'),
-            DB::raw('COALESCE(SUM(p.monto), 0) AS monto_total'),
-            DB::raw('COALESCE(SUM(p.monto - ((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario - p.adelanto)), 0) AS saldo_pendiente'),
-            DB::raw('COALESCE(SUM((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario) - SUM(p.adelanto), 0) AS total_a_pagar')
-        )
-        ->whereBetween('c.fecha_de_descarga', [$inicio_periodo, $fin_periodo])
-        ->groupBy('a.id', 'a.razon_social')
-        ->get();
-}
+    {
+        return DB::table('agricultors as a')
+            ->leftJoin('cargas as c', 'c.RUC_Agricultor', '=', 'a.id')
+            ->leftJoin('guias as g', 'g.carga_id', '=', 'c.id')
+            ->leftJoin('pagos as p', 'p.guia_id', '=', 'g.id')
+            ->select(
+                'a.id AS agricultor_id',
+                'a.razon_social AS agricultor_nombre',
+                DB::raw('COALESCE(SUM((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario), 0) AS total_devengado'),
+                DB::raw('COALESCE(SUM(p.adelanto), 0) AS adelanto_total'),
+                DB::raw('COALESCE(SUM(p.monto), 0) AS monto_total'),
+                DB::raw('COALESCE(SUM(p.monto - ((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario - p.adelanto)), 0) AS saldo_pendiente'),
+                DB::raw('COALESCE(SUM((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario) - SUM(p.adelanto), 0) AS total_a_pagar')
+            )
+            ->whereBetween('c.fecha_de_descarga', [$inicio_periodo, $fin_periodo])
+            ->groupBy('a.id', 'a.razon_social')
+            ->get();
+    }
     public function index()
     {
 
@@ -94,90 +95,106 @@ class guiaController extends Controller
         $num_notificaciones = $agricultores_deben->count() + $agricultores_no_deben->count();
 
         $guiasPorSemana = DB::table('guias')
-        ->select(DB::raw('YEARWEEK(fecha_emision) AS semana'), DB::raw('COUNT(*) AS total'))
-        ->groupBy(DB::raw('YEARWEEK(fecha_emision)'))
-        ->get();
+            ->select(DB::raw('YEARWEEK(fecha_emision) AS semana'), DB::raw('COUNT(*) AS total'))
+            ->groupBy(DB::raw('YEARWEEK(fecha_emision)'))
+            ->get();
 
-    // Calcula el total general de guías emitidas
+        // Calcula el total general de guías emitidas
         $totalGuias = $guiasPorSemana->sum('total');
 
         $transportistas = transportista::all();
 
         $guiasPorAgricultor = DB::table('guias')
-        ->join('agricultors', 'guias.agricultor_id', '=', 'agricultors.id')
-        ->select('agricultors.razon_social AS agricultor', DB::raw('COUNT(*) AS total_guias'))
-        ->groupBy('agricultors.id', 'agricultors.razon_social')
-        ->orderBy('total_guias', 'desc')
-        ->get();
+            ->join('agricultors', 'guias.agricultor_id', '=', 'agricultors.id')
+            ->select('agricultors.razon_social AS agricultor', DB::raw('COUNT(*) AS total_guias'))
+            ->groupBy('agricultors.id', 'agricultors.razon_social')
+            ->orderBy('total_guias', 'desc')
+            ->get();
 
 
 
-        return view('guia_remision.index', compact('guias','pagos','campos','transportistas','agricultorId','transportistaId','agricultores','totalGuias','guiasPorEstado','guiasHoy',
-        'guiasPorEstadoConDetalles', 'cargas', 'agricultores_a_pagar', 'agricultores_deben', 'agricultores_no_deben', 'num_notificaciones', 'totalGuias', 'guiasPorSemana', 'guiasPorAgricultor'));
+        return view('guia_remision.index', compact(
+            'guias',
+            'pagos',
+            'campos',
+            'transportistas',
+            'agricultorId',
+            'transportistaId',
+            'agricultores',
+            'totalGuias',
+            'guiasPorEstado',
+            'guiasHoy',
+            'guiasPorEstadoConDetalles',
+            'cargas',
+            'agricultores_a_pagar',
+            'agricultores_deben',
+            'agricultores_no_deben',
+            'num_notificaciones',
+            'totalGuias',
+            'guiasPorSemana',
+            'guiasPorAgricultor'
+        ));
     }
 
 
     public function store(Request $request)
-{
-    try {
-        // Validar los datos del formulario
-        $validatedData = $request->validate([
-            'fecha_emision' => 'required|date',
-            'nro_ticket' => 'required',
-            'fecha_partida' => 'required|date',
-            'punto_partida' => 'required',
-            'punto_llegada' => 'required',
-            'producto' => 'required',
-            'nro_factura' => 'nullable',
-            'estado' => 'required',
-            'ruc_agricultor' => 'required',
-            'ruc_transportista' => 'required',
-            'carga_id' => 'required|exists:cargas,id',
-        ]);
-
-        // Verificar si la factura ya existe en la tabla de facturas
-        $factura = factura::where('nro_factura', $request->nro_factura)->first();
-
-        // Si la factura no existe, crearla
-        if (!$factura) {
-            $factura = Factura::create([
-                'nro_factura' => $request->nro_factura,
-                // Otros campos de factura
-            ]);
-        }
-
-        // Obtener el ID del agricultor y del transportista
-        $agricultorId = Agricultor::where('ruc', $request->ruc_agricultor)->value('id');
-        $transportistaId = Transportista::where('RUC', $request->ruc_transportista)->value('id');
-
-        // Verificar si se encontraron los IDs
-        if (!$agricultorId || !$transportistaId) {
-            return redirect()->back()->with('error', 'No se encontró un agricultor o transportista con el RUC proporcionado.');
-        }
-
-        // Asignar los IDs encontrados y el ID de la factura
-        $validatedData['agricultor_id'] = $agricultorId;
-        $validatedData['transportista_id'] = $transportistaId;
-        $validatedData['nro_factura'] = $factura->id;
-
-        // Crear una nueva instancia de GuiaRemision con los datos del formulario
-        Guia::create($validatedData);
-
-        // Redireccionar al usuario a la página deseada después de guardar la guía de remisión
-        return redirect()->back()->with('success', '¡La guía de remisión se ha creado exitosamente!');
-    } catch (QueryException $e) {
-        // Capturar excepciones de base de datos y manejarlas
-        return redirect()->back()->with('error', 'Error al guardar la guía de remisión: ' . $e->getMessage());
-    } catch (\Exception $e) {
-        // Capturar otras excepciones y manejarlas
-        return redirect()->back()->with('error', 'Error desconocido al guardar la guía de remisión: ' . $e->getMessage());
-    }
-}
-
-    public function edit($id)
     {
+        try {
+            // Validar los datos del formulario
+            $validatedData = $request->validate([
+                'fecha_emision' => 'required|date',
+                'nro_ticket' => 'required',
+                'fecha_partida' => 'required|date',
+                'punto_partida' => 'required',
+                'punto_llegada' => 'required',
+                'producto' => 'required',
+                'nro_factura' => 'nullable',
+                'estado' => 'required',
+                'ruc_agricultor' => 'required',
+                'ruc_transportista' => 'required',
+                'carga_id' => 'required|exists:cargas,id',
+            ]);
 
+            // Verificar si la factura ya existe en la tabla de facturas
+            $factura = factura::where('nro_factura', $request->nro_factura)->first();
+
+            // Si la factura no existe, crearla
+            if (!$factura) {
+                $factura = Factura::create([
+                    'nro_factura' => $request->nro_factura,
+                    // Otros campos de factura
+                ]);
+            }
+
+            // Obtener el ID del agricultor y del transportista
+            $agricultorId = Agricultor::where('ruc', $request->ruc_agricultor)->value('id');
+            $transportistaId = Transportista::where('RUC', $request->ruc_transportista)->value('id');
+
+            // Verificar si se encontraron los IDs
+            if (!$agricultorId || !$transportistaId) {
+                return redirect()->back()->with('error', 'No se encontró un agricultor o transportista con el RUC proporcionado.');
+            }
+
+            // Asignar los IDs encontrados y el ID de la factura
+            $validatedData['agricultor_id'] = $agricultorId;
+            $validatedData['transportista_id'] = $transportistaId;
+            $validatedData['nro_factura'] = $factura->id;
+
+            // Crear una nueva instancia de GuiaRemision con los datos del formulario
+            Guia::create($validatedData);
+
+            // Redireccionar al usuario a la página deseada después de guardar la guía de remisión
+            return redirect()->back()->with('success', '¡La guía de remisión se ha creado exitosamente!');
+        } catch (QueryException $e) {
+            // Capturar excepciones de base de datos y manejarlas
+            return redirect()->back()->with('error', 'Error al guardar la guía de remisión: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            // Capturar otras excepciones y manejarlas
+            return redirect()->back()->with('error', 'Error desconocido al guardar la guía de remisión: ' . $e->getMessage());
+        }
     }
+
+    public function edit($id) {}
 
 
     public function update(Request $request, $id)
@@ -186,7 +203,7 @@ class guiaController extends Controller
             // Validar los datos del formulario
             $validatedData = $request->validate([
                 'fecha_emision' => 'required|date',
-                'nro_guia' => 'required|unique:guias,nro_guia,'.$id,
+                'nro_guia' => 'required|unique:guias,nro_guia,' . $id,
                 'nro_ticket' => 'required',
                 'fecha_partida' => 'required|date',
                 'punto_partida' => 'required',
@@ -265,25 +282,25 @@ class guiaController extends Controller
     }
 
     public function verificarRuc(Request $request)
-{
-    // Obtiene el RUC del parámetro de la solicitud
-    $ruc = $request->get('ruc');
+    {
+        // Obtiene el RUC del parámetro de la solicitud
+        $ruc = $request->get('ruc');
 
-    // Busca un agricultor con el RUC dado en la base de datos
-    $agricultor = Agricultor::where('RUC', $ruc)->first();
+        // Busca un agricultor con el RUC dado en la base de datos
+        $agricultor = Agricultor::where('RUC', $ruc)->first();
 
-    // Busca un transportista con el RUC dado en la base de datos
-    $transportista = Transportista::where('RUC', $ruc)->first();
+        // Busca un transportista con el RUC dado en la base de datos
+        $transportista = Transportista::where('RUC', $ruc)->first();
 
-    // Verifica si se encontró un agricultor o un transportista con el RUC dado
-    if ($agricultor || $transportista) {
-        // Si se encuentra, devuelve una respuesta JSON con 'registrado' como verdadero
-        return response()->json(['registrado' => true]);
-    } else {
-        // Si no se encuentra, devuelve una respuesta JSON con 'registrado' como falso
-        return response()->json(['registrado' => false]);
+        // Verifica si se encontró un agricultor o un transportista con el RUC dado
+        if ($agricultor || $transportista) {
+            // Si se encuentra, devuelve una respuesta JSON con 'registrado' como verdadero
+            return response()->json(['registrado' => true]);
+        } else {
+            // Si no se encuentra, devuelve una respuesta JSON con 'registrado' como falso
+            return response()->json(['registrado' => false]);
+        }
     }
-}
 
 
 
@@ -307,9 +324,9 @@ class guiaController extends Controller
 
         // Buscar el peso bruto asociado al RUC del transportista en la base de datos
         $peso_bruto = Carga::join('vehiculos', 'cargas.id_vehiculo', '=', 'vehiculos.id')
-                            ->join('transportistas', 'vehiculos.id_transportista', '=', 'transportistas.id')
-                            ->where('transportistas.RUC', $ruc_transportista)
-                            ->value('cargas.total_carga_bruta');
+            ->join('transportistas', 'vehiculos.id_transportista', '=', 'transportistas.id')
+            ->where('transportistas.RUC', $ruc_transportista)
+            ->value('cargas.total_carga_bruta');
 
         // Devolver el peso bruto como respuesta a la solicitud AJAX
         return response()->json($peso_bruto);
@@ -323,7 +340,7 @@ class guiaController extends Controller
         return view('guias', compact('guia'));
     }
 
-     public function downloadPDF($id)
+    public function downloadPDF($id)
     {
         $guia = Guia::findOrFail($id);
         $agricultor = Agricultor::findOrFail($guia->agricultor_id); // Ajusta según tu modelo
@@ -335,11 +352,21 @@ class guiaController extends Controller
         return $pdf->download('guia_' . $guia->id . '.pdf');
     }
 
+
     public function verificarRucTransportista(Request $request)
     {
+        $id = $request->input('id_transportista');
         $ruc = $request->input('ruc_transportista');
 
-        $datos = Transportista::where('RUC', $ruc)->first();
+        // Primero intentar buscar por ID
+        if ($id) {
+            $datos = Transportista::find($id);
+        }
+        // Si no se encuentra por ID o no se proporcionó ID, buscar por RUC
+        if (!isset($datos) && $ruc) {
+            $datos = Transportista::where('RUC', $ruc)->first();
+        }
+
         if ($datos) {
             return response()->json([
                 'razon_social' => $datos->razon_social,
@@ -347,16 +374,26 @@ class guiaController extends Controller
                 'RUC' => $datos->RUC,
             ]);
         } else {
-            return response()->json(['error' => 'No se encontraron datos para el RUC proporcionado'], 404);
+            return response()->json([
+                'error' => 'No se encontraron datos para el transportista'
+            ], 404);
         }
-        
     }
 
     public function verificarRucAgricultor(Request $request)
     {
+        $id = $request->input('id_agricultor');
         $ruc = $request->input('ruc_agricultor');
 
-        $datos = Agricultor::where('ruc', $ruc)->first();
+        // Primero intentar buscar por ID
+        if ($id) {
+            $datos = Agricultor::find($id);
+        }
+        // Si no se encuentra por ID o no se proporcionó ID, buscar por RUC
+        if (!isset($datos) && $ruc) {
+            $datos = Agricultor::where('ruc', $ruc)->first();
+        }
+
         if ($datos) {
             return response()->json([
                 'razon_social' => $datos->razon_social,
@@ -364,9 +401,9 @@ class guiaController extends Controller
                 'ruc' => $datos->ruc,
             ]);
         } else {
-            return response()->json(['error' => 'No se encontraron datos para el RUC proporcionado'], 404);
+            return response()->json([
+                'error' => 'No se encontraron datos para el agricultor'
+            ], 404);
         }
-        
     }
-
 }

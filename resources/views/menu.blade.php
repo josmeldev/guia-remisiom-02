@@ -116,7 +116,7 @@
                                                                 stroke-width="0" fill="currentColor" />
                                                         </svg>
                                                     </a>
-                                                    <button class="btn btn-info" onclick="consultarRUCTransportistaDesdeTD()">
+                                                    <button class="btn btn-info" data-id="{{ $transportista->id }}"  onclick="consultarRUCTransportistaDesdeTD(this)">
                                                 Seleccionar
                                             </button>
                                                 </td>
@@ -211,7 +211,7 @@
                                                             stroke-width="0" fill="currentColor" />
                                                     </svg>
                                                 </a>
-                                                <button class="btn btn-info" onclick="consultarRUCAgricultorDesdeTD()">
+                                                <button class="btn btn-info" data-id="{{ $agricultor->id }}"  onclick="consultarRUCAgricultorDesdeTD(this)">
                                                 Seleccionar
                                             </button>
                                             </td>
@@ -1422,59 +1422,69 @@
 <script>
     
     // tu código aquí
-     function consultarRUCTransportistaDesdeTD() {
-        var ruc = document.querySelector('.ruc-transportista').innerText.trim();
+    function consultarRUCTransportistaDesdeTD(button) {
+    // Obtener el ID del botón clickeado
+    var id = button.getAttribute('data-id');
+    // Obtener el RUC de la fila específica
+    var ruc = button.closest('tr').querySelector('.ruc-transportista').innerText.trim();
     
-        $.ajax({
-            url: "{{ route('ruc.transportista') }}",
-            method: 'POST',
-            data: {
-                '_token': '{{ csrf_token() }}',
-                'ruc_transportista': ruc
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.error) {
-                    alert(response.error);
-                } else {
-                    document.getElementById('razonSocialRemTransport').value = response.razon_social;
-                    document.getElementById('direccionRemTransport').value = response.direccion;
-                    document.getElementById('rucRemTransport').value = response.RUC;
-                    document.getElementById('cerrarModalTransportista').click();
-                }
-            },
-            error: function (xhr) {
-                alert('Error al consultar el RUC.');
+    $.ajax({
+        url: "{{ route('ruc.transportista') }}",
+        method: 'POST',
+        data: {
+            '_token': '{{ csrf_token() }}',
+            'id_transportista': id,
+            'ruc_transportista': ruc
+        },
+        success: function(response) {
+            console.log(response);
+            if (response.error) {
+                alert(response.error);
+            } else {
+                document.getElementById('razonSocialRemTransport').value = response.razon_social;
+                document.getElementById('direccionRemTransport').value = response.direccion;
+                document.getElementById('rucRemTransport').value = response.RUC;
+                document.getElementById('cerrarModalTransportista').click();
             }
-        });
-    }
+        },
+        error: function(xhr) {
+            alert('Error al consultar el transportista.');
+            console.log(xhr);
+        }
+    });
+}
 
-    function consultarRUCAgricultorDesdeTD() {
-        var ruc = document.querySelector('.ruc-agricultor').innerText.trim();
+function consultarRUCAgricultorDesdeTD(button) {
+    // Obtener el ID del botón clickeado
+    var id = button.getAttribute('data-id');
+    // Obtener el RUC de la fila específica
+    var ruc = button.closest('tr').querySelector('.ruc-agricultor').innerText.trim();
     
-        $.ajax({
-            url: "{{ route('ruc.agricultor') }}",
-            method: 'POST',
-            data: {
-                '_token': '{{ csrf_token() }}',
-                'ruc_agricultor': ruc
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.error) {
-                    alert(response.error);
-                } else {
-                    document.getElementById('razonSocialInput').value = response.razon_social;
-                    document.getElementById('direccionInput').value = response.direccion;
-                    document.getElementById('rucInput').value = response.ruc;
-                    document.getElementById('cerrarModalAgricultor').click();
-                }
-            },
-            error: function (xhr) {
-                alert('Error al consultar el RUC.');
+    $.ajax({
+        url: "{{ route('ruc.agricultor') }}",
+        method: 'POST',
+        data: {
+            '_token': '{{ csrf_token() }}',
+            'id_agricultor': id,
+            'ruc_agricultor': ruc
+        },
+        success: function(response) {
+            console.log(response);
+            if (response.error) {
+                alert(response.error);
+            } else {
+                document.getElementById('razonSocialInput').value = response.razon_social;
+                document.getElementById('direccionInput').value = response.direccion;
+                document.getElementById('rucInput').value = response.ruc;
+                document.getElementById('cerrarModalAgricultor').click();
             }
-        });
-    }
+        },
+        error: function(xhr) {
+            alert('Error al consultar el agricultor.');
+            console.log(xhr);
+        }
+    });
+}
 
 </script>
 
