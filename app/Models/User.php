@@ -15,11 +15,11 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use  HasRoles;
+    use Notifiable;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-   
     use TwoFactorAuthenticatable;
 
     /**
