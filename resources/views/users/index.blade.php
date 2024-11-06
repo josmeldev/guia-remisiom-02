@@ -1,11 +1,27 @@
-
 @extends('layouts.template')
 <!-- CSS de Bootstrap -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 @section('content')
-<table class="table table-striped" >
-    <thead >
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
+
+@if(session('warning'))
+<div class="alert alert-warning">
+    {{ session('warning') }}
+</div>
+@endif
+<table class="table table-striped">
+    <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -13,7 +29,6 @@
             <th>Role</th>
             <th>Created At</th>
             <th>Acciones</th>
-
         </tr>
     </thead>
     <tbody>
@@ -22,15 +37,15 @@
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->role }}</td>
+            <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
             <td>{{ $user->created_at }}</td>
             <td>
-                @if($user->id !== Auth::id() && $user->role !== 'Administrador')
-                    <form method="POST" action="{{ route('usuarios.eliminar', ['id' => $user->id]) }}" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
+                @if($user->id !== Auth::id() && !$user->hasRole('Administrador'))
+                <form method="POST" action="{{ route('usuarios.eliminar', ['id' => $user->id]) }}" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
                 @endif
 
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editarUsuario{{ $user->id }}">
@@ -64,9 +79,9 @@
                                     <div class="form-group">
                                         <label for="role">Rol</label>
                                         <select class="form-control" id="role" name="role">
-                                            <option value="Administrador" {{ $user->role === 'Administrador' ? 'selected' : '' }}>Administrador</option>
-                                            <option value="Asistente" {{ $user->role === 'Asistente' ? 'selected' : '' }}>Asistente</option>
-                                            <option value="Usuario" {{ $user->role === 'Usuario' ? 'selected' : '' }}>Usuario</option>
+                                            @foreach($roles as $role)
+                                            <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? '' : 'Sin Asignar' }}>{{ $role->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -74,13 +89,11 @@
                                     <div class="form-group">
                                         <label for="imagen_actual">Imagen actual:</label><br>
                                         @if($user->profile_photo_path)
-                                            <img src="{{ asset($user->profile_photo_path) }}" alt="Imagen de perfil" style="max-width: 200px;">
+                                        <img src="{{ asset($user->profile_photo_path) }}" alt="Imagen de perfil" style="max-width: 200px;">
                                         @else
-                                            <p>No tiene imagen de perfil</p>
+                                        <p>No tiene imagen de perfil</p>
                                         @endif
                                     </div>
-
-
 
                                     <!-- Campo para seleccionar nueva imagen -->
                                     <div class="form-group">
@@ -91,29 +104,24 @@
                                     <!-- Botones de envío -->
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                 </form>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </td>
         </tr>
-
         @endforeach
     </tbody>
 </table>
-
-@endSection
+@endsection
 
 @section('css')
 <!-- CSS de Bootstrap -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="{{ asset('css/styleTables.css') }}">
-@endSection
+@endsection
 
 @section('js')
 <!-- JavaScript de Bootstrap (si necesitas funcionalidad interactiva) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-@endSection
+@endsection

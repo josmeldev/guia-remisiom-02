@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class userController extends Controller
 {
@@ -35,8 +36,8 @@ class userController extends Controller
 
     public function index()
     {
-        $users = User::all(); // Recupera todos los usuarios
-
+        $users = User::where('id', '!=', 1)->get();
+        $roles = Role::all(); // Recupera todos los roles
         $user = Auth::user();
         $notifications = $user->notifications;
 
@@ -54,7 +55,7 @@ class userController extends Controller
         });
         $num_notificaciones = $agricultores_deben->count() + $agricultores_no_deben->count();
 
-        return view('users.index', compact('users', 'agricultores_deben', 'agricultores_no_deben', 'num_notificaciones', 'notifications'));
+        return view('users.index', compact('users', 'agricultores_deben', 'agricultores_no_deben', 'num_notificaciones', 'notifications', 'roles'));
     }
 
     public function eliminar(Request $request, $id)
@@ -76,11 +77,16 @@ class userController extends Controller
     public function editar($id)
     {
         $user = User::find($id);
-        if ($user) {
-            return view('users.edit', ['user' => $user]);
-        } else {
-            return redirect()->back()->with('error', 'No se pudo encontrar el usuario.');
-        }
+    $roles = Role::all(); // Obtener todos los roles de Spatie
+    
+    if ($user) {
+        return view('users.edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+    
+    return redirect()->back()->with('error', 'No se pudo encontrar el usuario.');
     }
     public function update(Request $request, $id)
 {
@@ -88,7 +94,7 @@ class userController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$id,
-            'role' => 'required|in:Administrador,Asistente,Usuario',
+            'role' => 'required|exists:roles,name',
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación de la imagen
             // Añade más validaciones según sea necesario
         ]);
@@ -100,7 +106,7 @@ class userController extends Controller
 
         $user->name = $request->nombre;
         $user->email = $request->email;
-        $user->role = $request->role;
+        $user->syncRoles([$request->role]);
         // Actualiza otros campos según sea necesario
 
         // Manejo de la imagen de perfil

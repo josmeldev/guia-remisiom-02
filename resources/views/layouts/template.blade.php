@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +9,30 @@
 
     <link rel="stylesheet" href="{{ asset('css/templante.css') }}">
 
-  <!-- Enlace al archivo CSS de Bootstrap Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Enlace al archivo CSS de Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
 
-  <!-- CSS de Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- CSS de Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  <!-- Bootstrap JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Enlace al archivo CSS de Bootstrap (opcional si no lo has incluido ya) -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvMJKKTPb8j3R4rVr6z9GdAwpQQXsw8hxFcFLQ/kCF5Fa1IM" crossorigin="anonymous">
+    <!-- Enlace al archivo CSS de Bootstrap (opcional si no lo has incluido ya) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvMJKKTPb8j3R4rVr6z9GdAwpQQXsw8hxFcFLQ/kCF5Fa1IM" crossorigin="anonymous">
 
-<!-- Enlace al archivo JavaScript de Bootstrap (necesario) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha384-ZiXggSEA6Nb0YhKx4Md5RkYq6oCqAq5J0Fv3+6Oq79B/tkzU1qQFpL+94AC6a/2R" crossorigin="anonymous"></script>
+    <!-- Enlace al archivo JavaScript de Bootstrap (necesario) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha384-ZiXggSEA6Nb0YhKx4Md5RkYq6oCqAq5J0Fv3+6Oq79B/tkzU1qQFpL+94AC6a/2R" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
 </head>
+
 <body>
     <header class="d-flex align-items-center justify-content-between  ">
         <div class="sidebar-header">
@@ -139,25 +141,25 @@
             <form id="logout-form" action="{{ route("logout") }}" method="POST" style="display: none;">
                 @csrf
             </form>
-            <div id="user-content" class="user-content"  style="display: none;">
+            <div id="user-content" class="user-content" style="display: none;">
                 <div class="user-div">
                     <img src="{{ asset(Auth::user()->profile_photo_path) }}" alt="Usuario">
 
                 </div>
                 <hr style="border: dashed 1px white;">
 
-                <div class="div-data" >
+                <div class="div-data">
                     <div class="user-name">
                         <h6 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{ Auth::user()->name }}</h6>
                     </div>
                     <div class="role">
                         <p class="first-paragraph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
-                            <path d="M12 22L10 16H2L4 22H12ZM12 22H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M12 13V12.5C12 10.6144 12 9.67157 11.4142 9.08579C10.8284 8.5 9.88562 8.5 8 8.5C6.11438 8.5 5.17157 8.5 4.58579 9.08579C4 9.67157 4 10.6144 4 12.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M19 13C19 14.1046 18.1046 15 17 15C15.8954 15 15 14.1046 15 13C15 11.8954 15.8954 11 17 11C18.1046 11 19 11.8954 19 13Z" stroke="currentColor" stroke-width="1.5" />
-                            <path d="M10 4C10 5.10457 9.10457 6 8 6C6.89543 6 6 5.10457 6 4C6 2.89543 6.89543 2 8 2C9.10457 2 10 2.89543 10 4Z" stroke="currentColor" stroke-width="1.5" />
-                            <path d="M14 17.5H20C21.1046 17.5 22 18.3954 22 19.5V20C22 21.1046 21.1046 22 20 22H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                        </svg> <strong>Rol Actual: </strong> {{ Auth::user()->getRoleNames()->first() }}</p>
+                                <path d="M12 22L10 16H2L4 22H12ZM12 22H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12 13V12.5C12 10.6144 12 9.67157 11.4142 9.08579C10.8284 8.5 9.88562 8.5 8 8.5C6.11438 8.5 5.17157 8.5 4.58579 9.08579C4 9.67157 4 10.6144 4 12.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M19 13C19 14.1046 18.1046 15 17 15C15.8954 15 15 14.1046 15 13C15 11.8954 15.8954 11 17 11C18.1046 11 19 11.8954 19 13Z" stroke="currentColor" stroke-width="1.5" />
+                                <path d="M10 4C10 5.10457 9.10457 6 8 6C6.89543 6 6 5.10457 6 4C6 2.89543 6.89543 2 8 2C9.10457 2 10 2.89543 10 4Z" stroke="currentColor" stroke-width="1.5" />
+                                <path d="M14 17.5H20C21.1046 17.5 22 18.3954 22 19.5V20C22 21.1046 21.1046 22 20 22H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg> <strong>Rol Actual: </strong> {{ Auth::user()->getRoleNames()->first() }}</p>
                     </div>
                     <div class="user-email">
                         <p class="second-paragraph" onmouseover="showEmailLink()" onmouseleave="hideEmailLink()">
@@ -192,7 +194,7 @@
     <div class="contenido">
 
 
-         <aside class="sidebar" id="sidebar">
+        <aside class="sidebar" id="sidebar">
 
             <ul>
                 <li>
@@ -232,7 +234,9 @@
                         <li><a class="dropdown-item sidebar-link div-icon" href="/conductores"><i class="bi bi-person"></i><span class="icon-text"> Conductores</span></a></li>
                         <li><a class="dropdown-item sidebar-link div-icon" href="/cargas"><i class="bi bi-box"></i><span class="icon-text"> Cargas</span></a></li>
                         <li><a class="dropdown-item sidebar-link div-icon" href="/vehiculos"><i class="bi bi-truck"></i><span class="icon-text"> Vehiculos</span></a></li>
+                        @role('Administrador')
                         <li><a class="dropdown-item sidebar-link div-icon" href="/usuarios"><i class="bi bi-people"></i><span class="icon-text"> Usuarios</span></a></li>
+                        @endrole
                         <li>
                             <a class="dropdown-item sidebar-link div-icon" href="/facturas">
                                 <i class="bi bi-file-earmark-text"></i>
@@ -332,9 +336,10 @@
 
     </div>
 
-  <script src="js/templante.js"></script>
+    <script src="js/templante.js"></script>
 
 
 
 </body>
+
 </html>
