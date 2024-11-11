@@ -13,7 +13,7 @@ class campo extends Model
         'nombre_campo',
         'ubigeo',
         'zona',
-        'ingenio',
+        'unidad_tecnica',
     ];
    
 

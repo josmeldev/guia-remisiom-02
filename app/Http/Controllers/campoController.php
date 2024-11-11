@@ -78,7 +78,7 @@ class campoController extends Controller
             'nombre_campo' => 'required|string',
             'ubigeo' => 'required|string',
             'zona' => 'required|string',
-            'ingenio' => 'required|string',
+            'unidad_tecnica' => 'required|string',
 
         ]);
 
@@ -87,7 +87,7 @@ class campoController extends Controller
             'nombre_campo' => $request->nombre_campo,
             'ubigeo' => $request->ubigeo,
             'zona' => $request->zona,
-            'ingenio' => $request->ingenio,
+            'unidad_tecnica' => $request->unidad_tecnica,
 
         ]);
 
@@ -102,7 +102,7 @@ class campoController extends Controller
             'nombre_campo' => 'required|string|max:100',
             'ubigeo' => 'required|string|max:50',
             'zona' => 'required|string|max:50',
-            'ingenio' => 'required|string|max:50',
+            'unidad_tecnica' => 'required|string|max:50',
         ]);
 
         // Encuentra el campo a actualizar
@@ -112,7 +112,7 @@ class campoController extends Controller
         $campo->nombre_campo = $request->nombre_campo;
         $campo->ubigeo = $request->ubigeo;
         $campo->zona = $request->zona;
-        $campo->ingenio = $request->ingenio;
+        $campo->unidad_tecnica = $request->unidad_tecnica;
         $campo->save();
 
         // Redirecciona a la página de destino después de la actualización
@@ -144,7 +144,7 @@ class campoController extends Controller
                 'campos.nombre_campo',
                 'campos.ubigeo',
                 'campos.zona',
-                'campos.ingenio'
+                'campos.unidad_tecnica'
             )
             ->get();
     }
@@ -159,10 +159,10 @@ class campoController extends Controller
                 'campos.nombre_campo',
                 'campos.ubigeo',
                 'campos.zona',
-                'campos.ingenio',
+                'campos.unidad_tecnica',
                 DB::raw('GROUP_CONCAT(agricultors.razon_social SEPARATOR \', \') AS agricultors')
             )
-            ->groupBy('campos.id', 'campos.nombre_campo', 'campos.ubigeo', 'campos.zona', 'campos.ingenio')
+            ->groupBy('campos.id', 'campos.nombre_campo', 'campos.ubigeo', 'campos.zona', 'campos.unidad_tecnica')
             ->get();
     }
 
@@ -181,8 +181,8 @@ class campoController extends Controller
         if ($request->filled('zona')) {
             $query->where('zona', 'like', '%' . $request->input('zona') . '%');
         }
-        if ($request->filled('ingenio')) {
-            $query->where('ingenio', 'like', '%' . $request->input('ingenio') . '%');
+        if ($request->filled('unidad_tecnica')) {
+            $query->where('unidad_tecnica', 'like', '%' . $request->input('unidad_tecnica') . '%');
         }
 
         // Obtener los campos que cumplen con los filtros

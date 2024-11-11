@@ -178,7 +178,7 @@
                             <th id="nombre_campo">Nombre del Campo</th>
                             <th id="ubigeo">Ubigeo</th>
                             <!--<th id="zona">Zona</th>-->
-                            <th id="ingenio">Ingenio</th>
+                            <th id="unidad_tecnica">Unidad Técnica</th>
                             <th id="codigo_mtc">Codigo MTC</th>
                             <th id="telefono">Telefono</th>
                             <th id ="transportista">Nombre Transportista</th>
@@ -214,7 +214,7 @@
                                 <td class="nombre_campo">{{ $dato->nombre_campo }}</td>
                                 <td class="ubigeo">{{ $dato->ubigeo }}</td>
                                 <!--<td class="zona">{{ $dato->zona }}</td>-->
-                                <td class="ingenio">{{ $dato->ingenio }}</td>
+                                <td class="unidad_tecnica">{{ $dato->unidad_tecnica }}</td>
                                 <td class="codigo_mtc">{{ $dato->codigo_mtc }}</td>
                                 <td class="telefono">{{ $dato->telefono }}</td>
                                 <td class="transportista">{{ $dato->nombre_transportista }}</td>
@@ -254,7 +254,7 @@
                             <th id="nombre_campo">Nombre del Campo</th>
                             <th id="ubigeo">Ubigeo</th>
                             <!--<th id="zona">Zona</th>-->
-                            <th id="ingenio">Ingenio</th>
+                            <th id="unidad_tecnica">Unidad Técnica</th>
                             <th id="codigo_mtc">Codigo MTC</th>
                             <th id="telefono">Telefono</th>
                             <th id ="transportista">Nombre Transportista</th>

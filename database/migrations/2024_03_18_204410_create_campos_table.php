@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre_campo',100);
             $table->string('ubigeo',50);
             $table->string('zona',50);
-            $table->string('ingenio',50);
+            $table->string('unidad_tecnica',50);
             $table->timestamps();
         });
     }

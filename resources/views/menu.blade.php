@@ -949,8 +949,8 @@
                                     <label for="zona" class="form-control-label">Zona:</label>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control mt-2" id="ingenio" name="ingenio" placeholder="" maxlength="30" required>
-                                    <label for="ingenio" class="form-control-label">Ingenio:</label>
+                                    <input type="text" class="form-control mt-2" id="unidad_tecnica" name="unidad_tecnica" placeholder="" maxlength="30" required>
+                                    <label for="unidad_tecnica" class="form-control-label">Unidad Técnica:</label>
                                 </div>
                             </div>
 

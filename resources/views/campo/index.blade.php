@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <p><strong>Ubigeo:</strong> {{ $campo->ubigeo }}</p>
                         <p><strong>Zona:</strong> {{ $campo->zona }}</p>
-                        <p><strong>Ingenio:</strong> {{ $campo->ingenio }}</p>
+                        <p><strong>Unidad Técnica:</strong> {{ $campo->unidad_tecnica }}</p>
                         <button class="btn btn-link btn-sm toggle-agricultores" type="button">
                             <i class="fas fa-caret-down mr-1"></i> Ver Agricultores
                         </button>
@@ -117,7 +117,7 @@
                                 <input type="text" class="form-control" name="zona" placeholder="Zona">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="ingenio" placeholder="Ingenio">
+                                <input type="text" class="form-control" name="unidad_tecnica" placeholder="Unidad Técnica">
                             </div>
                         </div>
                         <div class="row">
@@ -182,8 +182,8 @@
                                                     <input type="text" class="form-control" id="zona" name="zona" required maxlength="50">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="ingenio" class="form-label">Ingenio:</label>
-                                                    <input type="text" class="form-control" id="ingenio" name="ingenio" required maxlength="50">
+                                                    <label for="unidad_tecnica" class="form-label">Unidad Técnica:</label>
+                                                    <input type="text" class="form-control" id="unidad_tecnica" name="unidad_tecnica" required maxlength="50">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 d-flex justify-content-center align-items-center">
@@ -233,7 +233,7 @@
                                 <th>Nombre del Campo</th>
                                 <th>Ubigeo</th>
                                 <th>Zona</th>
-                                <th>Ingenio</th>
+                                <th>Unidad Técnica</th>
                                 <th>Acciones</th>
                             </tr>
 
@@ -245,7 +245,7 @@
                                     <td>{{ $campo->nombre_campo }}</td>
                                     <td>{{ $campo->ubigeo }}</td>
                                     <td>{{ $campo->zona }}</td>
-                                    <td>{{ $campo->ingenio }}</td>
+                                    <td>{{ $campo->unidad_tecnica }}</td>
 
                                     <td>
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal{{ $campo->id }}">
@@ -291,8 +291,8 @@
 
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="ingenio">Ingenio: </label>
-                                                                    <input type="text" class="form-control" id="ingenio" name="ingenio" value="{{ $campo->ingenio }}" required>
+                                                                    <label for="unidad_tecnica">Unidad Técnica: </label>
+                                                                    <input type="text" class="form-control" id="unidad_tecnica" name="unidad_tecnica" value="{{ $campo->unidad_tecnica }}" required>
 
                                                                 </div>
 
@@ -373,7 +373,7 @@
                                 <th>Nombre del Campo</th>
                                 <th>Ubigeo</th>
                                 <th>Zona</th>
-                                <th>Ingenio</th>
+                                <th>Unidad Técnica</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -386,7 +386,7 @@
                                 <td>{{ $campo->nombre_campo }}</td>
                                 <td>{{ $campo->ubigeo }}</td>
                                 <td>{{ $campo->zona }}</td>
-                                <td>{{ $campo->ingenio }}</td>
+                                <td>{{ $campo->unidad_tecnica }}</td>
                             </tr>
                             @endforeach
                         </tbody>
