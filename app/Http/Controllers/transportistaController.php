@@ -85,10 +85,10 @@ class transportistaController extends Controller
             // Validar los datos del formulario
             $validatedData = $request->validate([
                 //'unidad_tecnica' => 'required',
-                'campo' => 'nullable',
+                //'campo' => 'nullable',
                 'razon_social' => 'nullable',
                 'direccion' => 'nullable',
-                'zona' => 'nullable',
+                //'zona' => 'nullable',
 
 
                 'correo_electronico' => 'nullable|email|max:255',
@@ -119,11 +119,11 @@ class transportistaController extends Controller
     {
         $transportista = transportista::findOrFail($id);
         //$transportista->unidad_tecnica = $request->unidad_tecnica;
-        $transportista->campo = $request->campo;
+        //$transportista->campo = $request->campo;
         $transportista->RUC = $request->RUC;
         $transportista->razon_social = $request->razon_social;
         $transportista->direccion = $request->direccion;
-        $transportista->zona = $request->zona;
+        //$transportista->zona = $request->zona;
         $transportista->correo_electronico = $request->correo_electronico;
 
 
@@ -186,9 +186,9 @@ public function buscarTransportista(Request $request)
     //    $query->where('unidad_tecnica', 'like', '%' . $request->input('unidad_tecnica') . '%');
     //}
 
-    if ($request->filled('campo')) {
-        $query->where('campo', 'like', '%' . $request->input('campo') . '%');
-    }
+    //if ($request->filled('campo')) {
+    //    $query->where('campo', 'like', '%' . $request->input('campo') . '%');
+    //}
 
     if ($request->filled('ruc')) {
         $query->where('RUC', 'like', '%' . $request->input('ruc') . '%');
@@ -199,9 +199,9 @@ public function buscarTransportista(Request $request)
     }
 
 
-    if ($request->filled('zona')) {
-        $query->where('zona', 'like', '%' . $request->input('zona') . '%');
-    }
+    //if ($request->filled('zona')) {
+    //    $query->where('zona', 'like', '%' . $request->input('zona') . '%');
+    //}
 
     if ($request->filled('correo_electronico')) {
         $query->where('correo_electronico', 'like', '%' . $request->input('correo_electronico') . '%');

@@ -631,7 +631,7 @@
 
 
                                 </div>
-
+                                <!--
                                 <div class="form-group row">
                                     <div class="col">
                                         <input type="text" class="form-control mt-2" id="campo" name="campo"
@@ -639,22 +639,22 @@
                                         <label for="campo" class="form-control-label">Campo:</label>
                                     </div>
 
-                                </div>
+                                </div>-->
 
-
+                                <!--
                                 <div class="form-group row">
                                     <div class="col">
                                         <input type="text" class="form-control mt-2" id="zona" name="zona"
                                             placeholder=" " maxlength="50" required>
                                         <label for="zona" class="form-control-label">Zona:</label>
-                                    </div>
+                                    </div>-->
                                     <!--
                                     <div class="col">
                                         <input type="text" class="form-control mt-2" id="unidadTecnica"
                                             name="unidad_tecnica" placeholder=" " maxlength="20" required>
                                         <label for="unidadTecnica" class="form-control-label">Unidad Técnica:</label>
-                                    </div>-->
-                                </div>
+                                    </div>
+                                </div>-->
 
                                 <div class="form-group row">
                                     <div class="col">

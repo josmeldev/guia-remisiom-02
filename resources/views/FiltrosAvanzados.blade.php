@@ -177,10 +177,10 @@
                             <th id="fecha_descarga">Fecha de Descarga</th>
                             <th id="acopiadora">Acopiadora</th>
                             <th id="ubigeo">Ubigeo</th>
-                            <th id="zona">Zona</th>
+                            <!--<th id="zona">Zona</th>-->
                             <th id="ingenio">Ingenio</th>
                             <!--<th id="unidad_tecnica">Unidad Tecnica</th>-->
-                            <th id="campo">Campo</th>
+                            <!--<th id="campo">Campo</th>-->
                             <th id ="transportista">Nombre Transportista</th>
                             <th id="conductor">Datos del Conductor</th>
                             <th id="dni_conductor">DNI Conductor</th>
@@ -213,10 +213,10 @@
                                 <td class="fecha_descarga">{{ $dato->fecha_de_descarga }}</td>
                                 <td class="acopiadora">{{ $dato->acopiadora }}</td>
                                 <td class="ubigeo">{{ $dato->ubigeo }}</td>
-                                <td class="zona">{{ $dato->zona }}</td>
+                                <!--<td class="zona">{{ $dato->zona }}</td>-->
                                 <td class="ingenio">{{ $dato->ingenio }}</td>
                                 <!--<td class="unidad_tecnica">{{ $dato->unidad_tecnica }}</td>-->
-                                <td class="campo">{{ $dato->campo }}</td>
+                                <!--<td class="campo">{{ $dato->campo }}</td>-->
                                 <td class="transportista">{{ $dato->nombre_transportista }}</td>
                                 <td class="conductor">{{ $dato->datos_conductor }}</td>
                                 <td class="dni_conductor">{{ $dato->dni_conductor }}</td>
@@ -253,10 +253,10 @@
                             <th id="fecha_descarga">Fecha de Descarga</th>
                             <th id="acopiadora">Acopiadora</th>
                             <th id="ubigeo">Ubigeo</th>
-                            <th id="zona">Zona</th>
+                            <!--<th id="zona">Zona</th>-->
                             <th id="ingenio">Ingenio</th>
                             <!--<th id="unidad_tecnica">Unidad Tecnica</th>-->
-                            <th id="campo">Campo</th>
+                            <!--<th id="campo">Campo</th>-->
                             <th id ="transportista">Nombre Transportista</th>
                             <th id="conductor">Datos del Conductor</th>
                             <th id="dni_conductor">DNI Conductor</th>
@@ -374,8 +374,8 @@
                                 <th>RUC</th>
                                 <th>Razon Social</th>
                                 <th>Nombres</th>
-                                <th>Campo</th>
-                                <th>Unidad Tecnica</th>
+                                <!--<th>Campo</th>-->
+                                <!--<th>Unidad Tecnica</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -386,7 +386,7 @@
                                     <td>{{ $dato->ruc }}</td>
                                     <td>{{ $dato->razon_social }}</td>
                                     <td>{{ $dato->nombre_transportista }}</td>
-                                    <td>{{ $dato->campo }}</td>
+                                    <!--<td>{{ $dato->campo }}</td>-->
                                     <!--<td>{{ $dato->unidad_tecnica }}</td>-->
                                 </tr>
                             @endforeach

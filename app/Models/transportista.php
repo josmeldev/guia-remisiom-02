@@ -11,11 +11,11 @@ class transportista extends Model
 
     protected $fillable = [
         //'unidad_tecnica',
-        'campo',
+        //'campo',
         'RUC',
         'razon_social',
         'direccion',
-        'zona',
+        //'zona',
         'correo_electronico',
     ];
 

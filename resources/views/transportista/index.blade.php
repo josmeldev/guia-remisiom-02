@@ -79,9 +79,9 @@
 
             </div>
             <div class="d-flex mb-2 ">
-                <input type="text" class="form-control mr-2" name="campo" placeholder="Campo">
+                <!--<input type="text" class="form-control mr-2" name="campo" placeholder="Campo">-->
                 <!--<input type="text" class="form-control mr-2" name="unidad_tecnica" placeholder="Unidad Técnica">-->
-                <input type="text" class="form-control mr-2" name="zona" placeholder="Zona">
+                <!--<input type="text" class="form-control mr-2" name="zona" placeholder="Zona">-->
                 <input type="text" class="form-control mr-2" name="correo_electronico" placeholder="Correo Electrónico">
             </div>
             <div class="d-flex">
@@ -155,10 +155,10 @@
                                                     <input type="text" class="form-control" id="unidad_tecnica" name="unidad_tecnica" required>
                                                 </div>
                                                     -->
-                                            <div class=" mt-2 text-left">
+                                            <!--<div class=" mt-2 text-left">
                                                 <label for="campo" class="form-label">Campo:</label>
                                                 <input type="text" class="form-control" id="campo" name="campo" required>
-                                            </div>
+                                            </div>-->
                                             <div class="mt-2 text-left">
                                                 <label for="ruc" class="form-control-label">RUC:</label>
                                                 <input type="text" class="form-control " id="rucDos" name="RUC" placeholder=" " data-token="{{ env('RUC_API_TOKEN') }}" maxlength="11" required>
@@ -179,11 +179,11 @@
                                                 <label for="correo_electronico" class="form-label">Correo:</label>
                                                 <input type="text" class="form-control" id="correo_electronico" name="correo_electronico" required>
                                             </div>
-
+                                            <!--
                                             <div class="mt-2 text-left">
                                                 <label for="zona" class="form-label">Zona:</label>
                                                 <input type="text" class="form-control" id="zona" name="zona" required>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div>
 
@@ -221,11 +221,11 @@
                     <th><input type="checkbox" id="selectAllCheckbox" onchange="selectAll()" style="cursor: pointer;"></th>
                     <th>ID</th>
                     <!--<th>Unidad Tecnica</th>-->
-                    <th>Campo</th>
+                    <!--<th>Campo</th>-->
                     <th>RUC</th>
                     <th>Razon Social</th>
                     <th>Dirección</th>
-                    <th>Zona</th>
+                    <!--<th>Zona</th>-->
                     <th>Email</th>
                     <th>Acciones</th>
 
@@ -238,7 +238,7 @@
                     <td><input type="checkbox" class="deleteCheckbox" value="{{ $transportista->id }}" style="cursor: pointer;"></td>
                     <td>{{ $transportista->id }}</td>
                     <!--<td>{{ $transportista->unidad_tecnica }}</td>-->
-                    <td>{{ $transportista->campo }}</td>
+                    <!--<td>{{ $transportista->campo }}</td>-->
                     <td>{{ $transportista->RUC }}</td>
                     <td class="width-td">
                         {{ strlen($transportista->razon_social) > 50 ? substr($transportista->razon_social, 0, 47) . '...' : $transportista->razon_social }}
@@ -248,7 +248,7 @@
                     </td>
 
 
-                    <td>{{ $transportista->zona }}</td>
+                    <!--<td>{{ $transportista->zona }}</td>-->
                     <td>{{ $transportista->correo_electronico }}</td>
 
 
@@ -291,11 +291,12 @@
                                                     <input type="text" class="form-control" id="unidad_tecnica" name="unidad_tecnica" value="{{ $transportista->unidad_tecnica }}" required>
 
                                                 </div>-->
+                                                <!--
                                                 <div class="col-md-6">
                                                     <label for="campo">Campo: </label>
                                                     <input type="text" class="form-control" id="campo" name="campo" value="{{ $transportista->campo    }}" required>
 
-                                                </div>
+                                                </div>-->
 
                                             </div>
                                             <div class="form-group row">
@@ -314,12 +315,12 @@
 
                                             </div>
                                             <div class="form-group row">
-
+                                                <!--
                                                 <div class="col-md-6 ">
                                                     <label for="zona">Zona:</label>
                                                     <input type="text" class="form-control" id="zona" name="zona" value="{{ $transportista->zona }}">
 
-                                                </div>
+                                                </div>-->
                                                 <div class="col-md-6">
                                                     <label for="razon_social">Dirección: </label>
                                                     <input type="text" class="form-control" id="razon_social" name="razon_social" value="{{ $transportista->direccion }}" required>
