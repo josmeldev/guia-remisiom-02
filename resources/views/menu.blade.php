@@ -917,7 +917,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control mt-2" id="banco" name="banco" placeholder=" "
-                                    maxlength="50" required>
+                                    maxlength="50" >
                                 <label for="banco" class="form-control-label">Banco:</label>
                             </div>
                             <div class="form-group">
@@ -932,7 +932,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control mt-2" id="telefono" name="telefono" placeholder=" "
-                                    maxlength="9" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
+                                    maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
                                 <label for="telefono" class="form-control-label">Teléfono:</label>
                             </div>
                             

@@ -5,11 +5,7 @@
 
 
 @section('content')
-<nav aria-label="breadcrumb" style="line-height: 0; padding-top: 0; padding-bottom: 0; ">
-    <ol class="breadcrumb small" style="font-size: 1rem;">
-        {{ Breadcrumbs::render('agricultor.index') }}
-    </ol>
-</nav>
+
 
     @if(session('success'))
     <div class="alert alert-success">
@@ -103,6 +99,7 @@
                                         <label for="dni" class="form-label">DNI:</label>
                                         <input type="text" class="form-control" id="dni" name="dni" maxlength="8">
                                     </div>
+
                                 </div>
                             </div>
                             <div class="row justify-content-center mb-0">
@@ -212,7 +209,7 @@
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="ruc" class="form-label">RUC:</label>
-                            <input type="text" class="form-control" id="ruc" name="ruc">
+                            <input type="text" class="form-control" id="ruc" name="ruc" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -227,27 +224,52 @@
                             <input type="text" class="form-control" id="direccion" name="direccion">
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <label for="apellidos" class="form-label">Apellidos:</label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos">
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <label for="nombres" class="form-label">Nombres:</label>
-                            <input type="text" class="form-control" id="nombres" name="nombres">
-                        </div>
-                    </div>
+                    
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="dni" class="form-label">DNI:</label>
-                            <input type="text" class="form-control" id="dni" name="dni">
+                            <input type="text" class="form-control" id="dni" name="dni" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="numero_cuenta" class="form-label">Número de Cuenta:</label>
+                            <input type="text" class="form-control" id="numero_cuenta" name="numero_cuenta">
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="banco" class="form-label">Banco:</label>
+                            <input type="text" class="form-control" id="banco" name="banco">
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="cci" class="form-label">CCI:</label>
+                            <input type="text" class="form-control" id="cci" name="cci">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="correo_electronico" name="correo_electronico">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
+                        </div>
+                    </div>
+                </div>
+
+
                 <button type="submit" class="btn btn-outline-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
                         <path d="M20.9843 5C21.0344 4.28926 20.9732 3.83888 20.672 3.5074C20.2111 3 19.396 3 17.7657 3H6.23433C4.60404 3 3.7889 3 3.32795 3.5074C2.86701 4.0148 2.96811 4.8008 3.17033 6.3728C3.22938 6.8319 3.3276 7.09253 3.62734 7.44867C4.59564 8.59915 6.36901 10.6456 8.85746 12.5061C9.08486 12.6761 9.23409 12.9539 9.25927 13.2614C9.53961 16.6864 9.79643 19.0261 9.93278 20.1778C10.0043 20.782 10.6741 21.2466 11.226 20.8563C12.1532 20.2006 13.8853 19.4657 14.1141 18.2442C14.1986 17.7934 14.3136 17.0803 14.445 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -279,9 +301,13 @@
                         <th>RUC</th>
                         <th>Razón Social</th>
                         <th>Dirección</th>
-                        <th>Apellidos</th>
-                        <th>Nombres</th>
+                        
                         <th>DNI</th>
+                        <th>Numero de Cuenta</th>
+                        <th>Banco</th>
+                        <th>CCI</th>
+                        <th>Correo Electrónico</th>
+                        <th>Teléfono</th>
                         <td>Acciones</td>
 
                     </tr>
@@ -295,9 +321,13 @@
                             <td>{{ $agricultor->ruc }}</td>
                             <td>{{ $agricultor->razon_social }}</td>
                             <td>{{ $agricultor->direccion }}</td>
-                            <td>{{ $agricultor->apellidos }}</td>
-                            <td>{{ $agricultor->nombres }}</td>
+                            
                             <td>{{ $agricultor->dni }}</td>
+                            <td>{{ $agricultor->numero_cuenta }}</td>
+                            <td>{{ $agricultor->banco }}</td>
+                            <td>{{ $agricultor->cci }}</td>
+                            <td>{{ $agricultor->correo_electronico}}</td>
+                            <td>{{ $agricultor->telefono }}</td>
 
 
                             <td>
@@ -324,24 +354,15 @@
                                                     @csrf
                                                     @method('PUT')
                                                     <!-- Campos para editar -->
-                                                    <div class="form-group row">
-                                                        <div class="col-md-6">
-                                                            <label for="nombres">Nombres:</label>
-                                                            <input type="text" class="form-control" id="nombres" name="nombres" value="{{ $agricultor->nombres }}" required>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="apellidos">Apellidos:</label>
-                                                            <input type="text" class="form-control" id="apellidos" name="apellidos" value="{{ $agricultor->apellidos }}" required>
-                                                        </div>
-                                                    </div>
+                                            
                                                     <div class="form-group row">
                                                         <div class="col-md-6">
                                                             <label for="dni">DNI:</label>
-                                                            <input type="text" class="form-control" id="dni" name="dni" value="{{ $agricultor->dni }}" required>
+                                                            <input type="text" class="form-control" id="dni" name="dni" value="{{ $agricultor->dni }}" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="ruc">RUC:</label>
-                                                            <input type="text" class="form-control" id="ruc" name="ruc" value="{{ $agricultor->ruc }}">
+                                                            <input type="text" class="form-control" id="ruc" name="ruc" value="{{ $agricultor->ruc }}" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -353,6 +374,35 @@
                                                             <label for="direccion">Dirección:</label>
                                                             <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $agricultor->direccion }}">
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label for="numero_cuenta">Número de Cuenta:</label>
+                                                            <input type="text" class="form-control" id="numero_cuenta" name="numero_cuenta" value="{{ $agricultor->numero_cuenta }}">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="banco">Banco:</label>
+                                                            <input type="text" class="form-control" id="banco" name="banco" value="{{ $agricultor->banco }}">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label for="cci">CCI:</label>
+                                                            <input type="text" class="form-control" id="cci" name="cci" value="{{ $agricultor->cci }}">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="email">Correo Electrónico:</label>
+                                                            <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="{{ $agricultor->correo_electronico }}">
+                                                        </div>        
+                                                                
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label for="telefono">Teléfono:</label>
+                                                            <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $agricultor->telefono }}" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
+                                                        </div>           
+                                                                
                                                     </div>
                                                     <!-- Agrega más campos aquí si es necesario -->
                                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
