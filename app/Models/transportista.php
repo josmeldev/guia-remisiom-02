@@ -11,7 +11,7 @@ class transportista extends Model
 
     protected $fillable = [
         'codigo_mtc',
-        //'campo',
+        'telefono',
         'RUC',
         'razon_social',
         'direccion',

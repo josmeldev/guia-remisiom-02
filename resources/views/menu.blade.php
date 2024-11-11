@@ -631,15 +631,15 @@
 
 
                                 </div>
-                                <!--
+                                
                                 <div class="form-group row">
                                     <div class="col">
-                                        <input type="text" class="form-control mt-2" id="campo" name="campo"
+                                        <input type="text" class="form-control mt-2" id="telefono" name="telefono"
                                             placeholder=" " maxlength="30" required>
-                                        <label for="campo" class="form-control-label">Campo:</label>
+                                        <label for="telefono" class="form-control-label">Telefono:</label>
                                     </div>
 
-                                </div>-->
+                                </div>
 
                                 
                                 <div class="form-group row">

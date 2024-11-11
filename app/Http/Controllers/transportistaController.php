@@ -85,7 +85,7 @@ class transportistaController extends Controller
             // Validar los datos del formulario
             $validatedData = $request->validate([
                 'codigo_mtc' => 'required',
-                //'campo' => 'nullable',
+                'telefono' => 'unique:transportistas|nullable',
                 'razon_social' => 'nullable',
                 'direccion' => 'nullable',
                 //'zona' => 'nullable',
@@ -119,7 +119,7 @@ class transportistaController extends Controller
     {
         $transportista = transportista::findOrFail($id);
         $transportista->codigo_mtc = $request->codigo_mtc;
-        //$transportista->campo = $request->campo;
+        $transportista->telefono = $request->telefono;
         $transportista->RUC = $request->RUC;
         $transportista->razon_social = $request->razon_social;
         $transportista->direccion = $request->direccion;
@@ -186,9 +186,9 @@ public function buscarTransportista(Request $request)
        $query->where('codigo_mtc', 'like', '%' . $request->input('codigo_mtc') . '%');
     }
 
-    //if ($request->filled('campo')) {
-    //    $query->where('campo', 'like', '%' . $request->input('campo') . '%');
-    //}
+    if ($request->filled('telefono')) {
+       $query->where('telfono', 'like', '%' . $request->input('telefono') . '%');
+    }
 
     if ($request->filled('ruc')) {
         $query->where('RUC', 'like', '%' . $request->input('ruc') . '%');

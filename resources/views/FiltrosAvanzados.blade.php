@@ -180,7 +180,7 @@
                             <!--<th id="zona">Zona</th>-->
                             <th id="ingenio">Ingenio</th>
                             <th id="codigo_mtc">Codigo MTC</th>
-                            <!--<th id="campo">Campo</th>-->
+                            <th id="telefono">Telefono</th>
                             <th id ="transportista">Nombre Transportista</th>
                             <th id="conductor">Datos del Conductor</th>
                             <th id="dni_conductor">DNI Conductor</th>
@@ -216,7 +216,7 @@
                                 <!--<td class="zona">{{ $dato->zona }}</td>-->
                                 <td class="ingenio">{{ $dato->ingenio }}</td>
                                 <td class="codigo_mtc">{{ $dato->codigo_mtc }}</td>
-                                <!--<td class="campo">{{ $dato->campo }}</td>-->
+                                <td class="telefono">{{ $dato->telefono }}</td>
                                 <td class="transportista">{{ $dato->nombre_transportista }}</td>
                                 <td class="conductor">{{ $dato->datos_conductor }}</td>
                                 <td class="dni_conductor">{{ $dato->dni_conductor }}</td>
@@ -256,7 +256,7 @@
                             <!--<th id="zona">Zona</th>-->
                             <th id="ingenio">Ingenio</th>
                             <th id="codigo_mtc">Codigo MTC</th>
-                            <!--<th id="campo">Campo</th>-->
+                            <th id="telefono">Telefono</th>
                             <th id ="transportista">Nombre Transportista</th>
                             <th id="conductor">Datos del Conductor</th>
                             <th id="dni_conductor">DNI Conductor</th>
@@ -374,7 +374,7 @@
                                 <th>RUC</th>
                                 <th>Razon Social</th>
                                 <th>Nombres</th>
-                                <!--<th>Campo</th>-->
+                                <th>Teléfono</th>
                                 <th>Codigo MTC</th>
                             </tr>
                         </thead>
@@ -386,7 +386,7 @@
                                     <td>{{ $dato->ruc }}</td>
                                     <td>{{ $dato->razon_social }}</td>
                                     <td>{{ $dato->nombre_transportista }}</td>
-                                    <!--<td>{{ $dato->campo }}</td>-->
+                                    <td>{{ $dato->telefono }}</td>
                                     <td>{{ $dato->codigo_mtc }}</td>
                                 </tr>
                             @endforeach

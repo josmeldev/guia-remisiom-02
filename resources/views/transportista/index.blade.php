@@ -79,7 +79,7 @@
 
             </div>
             <div class="d-flex mb-2 ">
-                <!--<input type="text" class="form-control mr-2" name="campo" placeholder="Campo">-->
+                <input type="text" class="form-control mr-2" name="telefono" placeholder="Telefono">
                 <input type="text" class="form-control mr-2" name="codigo_mtc" placeholder="Código MTC">
                 <!--<input type="text" class="form-control mr-2" name="zona" placeholder="Zona">-->
                 <input type="text" class="form-control mr-2" name="correo_electronico" placeholder="Correo Electrónico">
@@ -155,10 +155,10 @@
                                                     <input type="text" class="form-control" id="codigo_mtc" name="codigo_mtc" required>
                                                 </div>
                                                     
-                                            <!--<div class=" mt-2 text-left">
-                                                <label for="campo" class="form-label">Campo:</label>
-                                                <input type="text" class="form-control" id="campo" name="campo" required>
-                                            </div>-->
+                                            <div class=" mt-2 text-left">
+                                                <label for="telefono" class="form-label">Telefono:</label>
+                                                <input type="text" class="form-control" id="telefono" name="telefono">
+                                            </div>
                                             <div class="mt-2 text-left">
                                                 <label for="ruc" class="form-control-label">RUC:</label>
                                                 <input type="text" class="form-control " id="rucDos" name="RUC" placeholder=" " data-token="{{ env('RUC_API_TOKEN') }}" maxlength="11" required>
@@ -221,7 +221,7 @@
                     <th><input type="checkbox" id="selectAllCheckbox" onchange="selectAll()" style="cursor: pointer;"></th>
                     <th>ID</th>
                     <th>Codigo MTC</th>
-                    <!--<th>Campo</th>-->
+                    <th>Teléfono</th>
                     <th>RUC</th>
                     <th>Razon Social</th>
                     <th>Dirección</th>
@@ -238,7 +238,7 @@
                     <td><input type="checkbox" class="deleteCheckbox" value="{{ $transportista->id }}" style="cursor: pointer;"></td>
                     <td>{{ $transportista->id }}</td>
                     <td>{{ $transportista->codigo_mtc }}</td>
-                    <!--<td>{{ $transportista->campo }}</td>-->
+                    <td>{{ $transportista->telefono }}</td>
                     <td>{{ $transportista->RUC }}</td>
                     <td class="width-td">
                         {{ strlen($transportista->razon_social) > 50 ? substr($transportista->razon_social, 0, 47) . '...' : $transportista->razon_social }}
@@ -291,12 +291,12 @@
                                                     <input type="text" class="form-control" id="codigo_mtc" name="codigo_mtc" value="{{ $transportista->codigo_mtc }}" required>
 
                                                 </div>
-                                                <!--
+                                                
                                                 <div class="col-md-6">
-                                                    <label for="campo">Campo: </label>
-                                                    <input type="text" class="form-control" id="campo" name="campo" value="{{ $transportista->campo    }}" required>
+                                                    <label for="telefono">Télefono: </label>
+                                                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $transportista->campo    }}" required>
 
-                                                </div>-->
+                                                </div>
 
                                             </div>
                                             <div class="form-group row">
@@ -349,7 +349,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('pago.destroy', $transportista->id) }}" method="POST" style="display: inline-block;">
+                        <form action="{{ route('transportista.destroy', $transportista->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">
