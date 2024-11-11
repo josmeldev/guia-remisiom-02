@@ -89,11 +89,19 @@ class agricultorController extends Controller
             // Validar los datos del formulario
             $validatedData = $request->validate([
                 'representante' => 'required',
-                'ruc' => 'required|unique:agricultors,ruc',
+                'ruc' => 'unique:agricultors,ruc|nullable',
                 'razon_social' => 'required',
                 'direccion' => 'required',
+                'dni' => 'unique:agricultors,dni|nullable',
+                'numero_cuenta' => 'required|unique:agricultors,numero_cuenta|nullable',
+                'banco' => 'required|nullable',
+                'cci' => 'required|nullable',
+                'correo_electronico' => 'required|email|max:255|nullable',
+                'telefono' => 'required|nullable',
             ], [
-                'ruc.unique' => 'El RUC ya está registrado.', // Mensaje personalizado para la regla unique
+                'ruc.unique' => 'El RUC ya está registrado.',
+                'dni.unique' => 'El DNI ya está registrado.',
+                'numero_cuenta.unique' => 'El número de cuenta ya está registrado.',
             ]);
 
             // Crear una nueva instancia de agricultor con los datos validados y guardarla en la base de datos
@@ -102,6 +110,13 @@ class agricultorController extends Controller
                 'ruc' => $validatedData['ruc'],
                 'razon_social' => $validatedData['razon_social'],
                 'direccion' => $validatedData['direccion'],
+                'dni' => $validatedData['dni'],
+                'numero_cuenta' => $validatedData['numero_cuenta'],
+                'banco' => $validatedData['banco'],
+                'cci' => $validatedData['cci'],
+                'correo_electronico' => $validatedData['correo_electronico'],
+                'telefono' => $validatedData['telefono'],
+
             ]);
 
             // Redireccionar de vuelta a la página del formulario con un mensaje de éxito
@@ -124,6 +139,12 @@ class agricultorController extends Controller
             $agricultor->ruc = $request->ruc;
             $agricultor->razon_social = $request->razon_social;
             $agricultor->direccion = $request->direccion;
+            $agricultor->dni = $request->dni;
+            $agricultor->numero_cuenta = $request->numero_cuenta;
+            $agricultor->banco = $request->banco;
+            $agricultor->cci = $request->cci;
+            $agricultor->correo_electronico = $request->correo_electronico;
+            $agricultor->telefono = $request->telefono;
             // Actualiza los demás campos aquí...
 
             // Guardar los cambios
@@ -169,6 +190,30 @@ class agricultorController extends Controller
 
         if ($request->filled('representante')) {
             $query->where('representante', 'LIKE', '%' . $request->input('representante') . '%');
+        }
+
+        if ($request->filled('dni')) {
+            $query->where('dni', 'LIKE', '%' . $request->input('dni') . '%');
+        }
+
+        if ($request->filled('numero_cuenta')) {
+            $query->where('numero_cuenta', 'LIKE', '%' . $request->input('numero_cuenta') . '%');
+        }
+
+        if ($request->filled('banco')) {
+            $query->where('banco', 'LIKE', '%' . $request->input('banco') . '%');
+        }
+
+        if ($request->filled('cci')) {
+            $query->where('cci', 'LIKE', '%' . $request->input('cci') . '%');
+        }
+
+        if ($request->filled('correo_electronico')) {
+            $query->where('correo_electronico', 'LIKE', '%' . $request->input('correo_electronico') . '%');
+        }
+
+        if ($request->filled('telefono')) {
+            $query->where('telefono', 'LIKE', '%' . $request->input('telefono') . '%');
         }
 
 

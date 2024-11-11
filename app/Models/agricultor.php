@@ -14,6 +14,12 @@ class agricultor extends Model
         'razon_social',
         'direccion',
         'representante',
+        'dni',
+        'numero_cuenta',
+        'banco',
+        'cci',
+        'correo_electronico',
+        'telefono',
 
     ];
 

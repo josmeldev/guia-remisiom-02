@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -13,10 +14,16 @@ return new class extends Migration
     {
         Schema::create('agricultors', function (Blueprint $table) {
             $table->id();
-            $table->string('ruc',11)->unique();
+            $table->string('ruc',11)->unique()->nullable();
             $table->string('razon_social',100);
             $table->string('direccion',100);
             $table->string('representante',50)->nullable();
+            $table->string('dni',8)->unique()->nullable();
+            $table->string('numero_cuenta',20)->unique()->nullable();
+            $table->string('banco',50)->nullable();
+            $table->string('cci',20)->nullable();
+            $table->string('correo_electronico',50)->nullable();
+            $table->string('telefono',50)->nullable();
             $table->timestamps();
         });
     }

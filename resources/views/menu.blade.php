@@ -888,7 +888,7 @@
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control mt-2" id="rucAgricultor" name="ruc"
-                                    placeholder=" " maxlength="11" data-token="{{ env('RUC_API_TOKEN') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);" >
+                                    placeholder=" " maxlength="11" data-token="{{ env('RUC_API_TOKEN') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);" >
                                 <label for="rucAgricultor" class="form-control-label">RUC:</label>
                             </div>
                             <div class="form-group">
@@ -906,6 +906,36 @@
                                     placeholder=" " maxlength="50" required>
                                 <label for="representante" class="form-control-label">Representante:</label>
                             </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-2" id="dni" name="dni" placeholder=" " maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);">
+                                <label for="dni" class="form-control-label">DNI:</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-2" id="numero_cuenta" name="numero_cuenta"
+                                    placeholder=" " maxlength="20" required>
+                                <label for="numero_cuenta" class="form-control-label">Número de Cuenta:</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-2" id="banco" name="banco" placeholder=" "
+                                    maxlength="50" required>
+                                <label for="banco" class="form-control-label">Banco:</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-2" id="cci" name="cci" placeholder=" "
+                                    maxlength="20" required>
+                                <label for="cci" class="form-control-label">CCI:</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-2" id="correo_electronico" name="correo_electronico"
+                                    placeholder=" " maxlength="255" required>
+                                <label for="correo_electronico" class="form-control-label">Correo Electrónico:</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-2" id="telefono" name="telefono" placeholder=" "
+                                    maxlength="9" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
+                                <label for="telefono" class="form-control-label">Teléfono:</label>
+                            </div>
+                            
 
                             <div class="form-group row">
                                 <div class="col-12 d-flex justify-content-center">
