@@ -35,7 +35,7 @@ class FiltrosAvanzadosController extends Controller
     CAM.ubigeo,
     CAM.zona,
     CAM.ingenio,
-    T.unidad_tecnica,
+    T.codigo_mtc,
     T.campo,
     T.RUC,
     T.razon_social,
@@ -67,7 +67,7 @@ LEFT JOIN
     agricultors A ON CAM.agricultor_id = A.id;
 
         ');
-        $columnIds = ['id', 'ruc', 'razon_social', 'direccion', 'nro_guia', 'nro_viaje', 'adelanto', 'precio', 'carga_bruta', 'carga_neta', 'material_extrano', 'km_origen', 'km_destino', 'fecha_carga', 'fecha_descarga', 'acopiadora', 'ubigeo', 'zona', 'ingenio', 'unidad_tecnica', 'campo', 'transportista', 'conductor', 'dni_conductor', 'placa', 'codigo_vehiculo', 'numero_ejes', 'nombre_agricultor', 'apellidos_agricultor', 'dni_agricultor'];
+        $columnIds = ['id', 'ruc', 'razon_social', 'direccion', 'nro_guia', 'nro_viaje', 'adelanto', 'precio', 'carga_bruta', 'carga_neta', 'material_extrano', 'km_origen', 'km_destino', 'fecha_carga', 'fecha_descarga', 'acopiadora', 'ubigeo', 'zona', 'ingenio', 'codigo_mtc', 'campo', 'transportista', 'conductor', 'dni_conductor', 'placa', 'codigo_vehiculo', 'numero_ejes', 'nombre_agricultor', 'apellidos_agricultor', 'dni_agricultor'];
 
          // Realiza la consulta SQL para obtener los datos necesarios
         $defaultColumns = ['id', 'ruc', 'razon_social','direccion', 'nro_guia', 'nro_viaje']; // Definir las columnas por defecto que deseas mostrar al iniciar la página
@@ -100,7 +100,7 @@ LEFT JOIN
             CAM.ubigeo,
             CAM.zona,
             CAM.ingenio,
-            T.unidad_tecnica,
+            T.codigo_mtc,
             T.campo,
             T.RUC,
             T.razon_social,
@@ -139,7 +139,7 @@ LEFT JOIN
         ");
 
          // Define el array de columnas
-         $columnIds = ['id', 'ruc', 'razon_social', 'direccion', 'nro_guia', 'nro_viaje', 'adelanto', 'precio', 'carga_bruta', 'carga_neta', 'material_extrano', 'km_origen', 'km_destino', 'fecha_carga', 'fecha_descarga', 'acopiadora', 'ubigeo', 'zona', 'ingenio', 'unidad_tecnica', 'campo', 'transportista', 'conductor', 'dni_conductor', 'placa', 'codigo_vehiculo', 'numero_ejes', 'nombre_agricultor', 'apellidos_agricultor', 'dni_agricultor'];
+         $columnIds = ['id', 'ruc', 'razon_social', 'direccion', 'nro_guia', 'nro_viaje', 'adelanto', 'precio', 'carga_bruta', 'carga_neta', 'material_extrano', 'km_origen', 'km_destino', 'fecha_carga', 'fecha_descarga', 'acopiadora', 'ubigeo', 'zona', 'ingenio', 'codigo_mtc', 'campo', 'transportista', 'conductor', 'dni_conductor', 'placa', 'codigo_vehiculo', 'numero_ejes', 'nombre_agricultor', 'apellidos_agricultor', 'dni_agricultor'];
 
          // Realiza la consulta SQL para obtener los datos necesarios
          $defaultColumns = ['id', 'ruc', 'razon_social','direccion', 'nro_guia', 'nro_viaje']; // Definir las columnas por defecto que deseas mostrar al iniciar la página

@@ -80,7 +80,7 @@
             </div>
             <div class="d-flex mb-2 ">
                 <!--<input type="text" class="form-control mr-2" name="campo" placeholder="Campo">-->
-                <!--<input type="text" class="form-control mr-2" name="unidad_tecnica" placeholder="Unidad Técnica">-->
+                <input type="text" class="form-control mr-2" name="codigo_mtc" placeholder="Código MTC">
                 <!--<input type="text" class="form-control mr-2" name="zona" placeholder="Zona">-->
                 <input type="text" class="form-control mr-2" name="correo_electronico" placeholder="Correo Electrónico">
             </div>
@@ -149,12 +149,12 @@
                                     @csrf
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <!--
+                                            
                                                 <div class="mt-2 text-left">
-                                                    <label for="unidad_tecnica" class="form-label">Unidad Técnica:</label>
-                                                    <input type="text" class="form-control" id="unidad_tecnica" name="unidad_tecnica" required>
+                                                    <label for="codigo_mtc" class="form-label">Código MTC:</label>
+                                                    <input type="text" class="form-control" id="codigo_mtc" name="codigo_mtc" required>
                                                 </div>
-                                                    -->
+                                                    
                                             <!--<div class=" mt-2 text-left">
                                                 <label for="campo" class="form-label">Campo:</label>
                                                 <input type="text" class="form-control" id="campo" name="campo" required>
@@ -220,7 +220,7 @@
                 <tr>
                     <th><input type="checkbox" id="selectAllCheckbox" onchange="selectAll()" style="cursor: pointer;"></th>
                     <th>ID</th>
-                    <!--<th>Unidad Tecnica</th>-->
+                    <th>Codigo MTC</th>
                     <!--<th>Campo</th>-->
                     <th>RUC</th>
                     <th>Razon Social</th>
@@ -237,7 +237,7 @@
                 <tr>
                     <td><input type="checkbox" class="deleteCheckbox" value="{{ $transportista->id }}" style="cursor: pointer;"></td>
                     <td>{{ $transportista->id }}</td>
-                    <!--<td>{{ $transportista->unidad_tecnica }}</td>-->
+                    <td>{{ $transportista->codigo_mtc }}</td>
                     <!--<td>{{ $transportista->campo }}</td>-->
                     <td>{{ $transportista->RUC }}</td>
                     <td class="width-td">
@@ -285,12 +285,12 @@
                                             @method('PUT')
                                             <!-- Campos para editar -->
                                             <div class="form-group row">
-                                                <!--
+                                                
                                                 <div class="col-md-6 ">
-                                                    <label for="unidad_tecnica">Unidad Tecnica:</label>
-                                                    <input type="text" class="form-control" id="unidad_tecnica" name="unidad_tecnica" value="{{ $transportista->unidad_tecnica }}" required>
+                                                    <label for="codigo_mtc">Codigo MTC:</label>
+                                                    <input type="text" class="form-control" id="codigo_mtc" name="codigo_mtc" value="{{ $transportista->codigo_mtc }}" required>
 
-                                                </div>-->
+                                                </div>
                                                 <!--
                                                 <div class="col-md-6">
                                                     <label for="campo">Campo: </label>

@@ -10,7 +10,7 @@ class transportista extends Model
     use HasFactory;
 
     protected $fillable = [
-        //'unidad_tecnica',
+        'codigo_mtc',
         //'campo',
         'RUC',
         'razon_social',
