@@ -84,7 +84,7 @@ class transportistaController extends Controller
         try {
             // Validar los datos del formulario
             $validatedData = $request->validate([
-                'unidad_tecnica' => 'required',
+                //'unidad_tecnica' => 'required',
                 'campo' => 'nullable',
                 'razon_social' => 'nullable',
                 'direccion' => 'nullable',
@@ -118,7 +118,7 @@ class transportistaController extends Controller
     public function update(Request $request, $id)
     {
         $transportista = transportista::findOrFail($id);
-        $transportista->unidad_tecnica = $request->unidad_tecnica;
+        //$transportista->unidad_tecnica = $request->unidad_tecnica;
         $transportista->campo = $request->campo;
         $transportista->RUC = $request->RUC;
         $transportista->razon_social = $request->razon_social;
@@ -182,9 +182,9 @@ public function buscarTransportista(Request $request)
     $query = Transportista::query();
 
     // Aplicar filtros si existen
-    if ($request->filled('unidad_tecnica')) {
-        $query->where('unidad_tecnica', 'like', '%' . $request->input('unidad_tecnica') . '%');
-    }
+    //if ($request->filled('unidad_tecnica')) {
+    //    $query->where('unidad_tecnica', 'like', '%' . $request->input('unidad_tecnica') . '%');
+    //}
 
     if ($request->filled('campo')) {
         $query->where('campo', 'like', '%' . $request->input('campo') . '%');

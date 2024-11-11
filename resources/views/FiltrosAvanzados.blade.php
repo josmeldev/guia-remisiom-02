@@ -179,7 +179,7 @@
                             <th id="ubigeo">Ubigeo</th>
                             <th id="zona">Zona</th>
                             <th id="ingenio">Ingenio</th>
-                            <th id="unidad_tecnica">Unidad Tecnica</th>
+                            <!--<th id="unidad_tecnica">Unidad Tecnica</th>-->
                             <th id="campo">Campo</th>
                             <th id ="transportista">Nombre Transportista</th>
                             <th id="conductor">Datos del Conductor</th>
@@ -215,7 +215,7 @@
                                 <td class="ubigeo">{{ $dato->ubigeo }}</td>
                                 <td class="zona">{{ $dato->zona }}</td>
                                 <td class="ingenio">{{ $dato->ingenio }}</td>
-                                <td class="unidad_tecnica">{{ $dato->unidad_tecnica }}</td>
+                                <!--<td class="unidad_tecnica">{{ $dato->unidad_tecnica }}</td>-->
                                 <td class="campo">{{ $dato->campo }}</td>
                                 <td class="transportista">{{ $dato->nombre_transportista }}</td>
                                 <td class="conductor">{{ $dato->datos_conductor }}</td>
@@ -255,7 +255,7 @@
                             <th id="ubigeo">Ubigeo</th>
                             <th id="zona">Zona</th>
                             <th id="ingenio">Ingenio</th>
-                            <th id="unidad_tecnica">Unidad Tecnica</th>
+                            <!--<th id="unidad_tecnica">Unidad Tecnica</th>-->
                             <th id="campo">Campo</th>
                             <th id ="transportista">Nombre Transportista</th>
                             <th id="conductor">Datos del Conductor</th>
@@ -387,7 +387,7 @@
                                     <td>{{ $dato->razon_social }}</td>
                                     <td>{{ $dato->nombre_transportista }}</td>
                                     <td>{{ $dato->campo }}</td>
-                                    <td>{{ $dato->unidad_tecnica }}</td>
+                                    <!--<td>{{ $dato->unidad_tecnica }}</td>-->
                                 </tr>
                             @endforeach
                             <!-- Agrega más filas según sea necesario -->

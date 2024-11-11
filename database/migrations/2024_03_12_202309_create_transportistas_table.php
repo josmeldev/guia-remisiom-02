@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transportistas', function (Blueprint $table) {
             $table->id();
-            $table->string('unidad_tecnica',10)->nullable();
+            //$table->string('unidad_tecnica',10)->nullable();
             $table->string('campo',50)->nullable();
             $table->string('RUC',11)->unique();
             $table->string('razon_social',100);

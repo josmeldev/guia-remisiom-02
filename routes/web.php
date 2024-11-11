@@ -99,7 +99,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/campos/{campo}', [campoController::class, 'destroy'])->name('campo.destroy');
         Route::delete('/conductores/{conductor}', [choferController::class, 'destroy'])->name('conductor.destroy');
         Route::delete('/transportistas/{transportista}', [transportistaController::class, 'destroy'])->name('transportista.destroy');
-        Route::delete('borrar-transportistas-seleccionados', [transportistaController::class, 'borrarSeleccionados'])->name('transportista.borrar_seleccionados');
+        Route::delete('borrar-transportistas-seleccionados', [TransportistaController::class, 'borrarSeleccionados'])->name('transportista.borrar_seleccionados');
         Route::delete('/agricultores/{agricultor}', [agricultorController::class, 'destroy'])->name('agricultor.destroy');
         Route::delete('/vehiculos/{vehiculo}', [vehiculoController::class, 'destroy'])->name('vehiculo.destroy');
         Route::delete('/cargas/{carga}', [cargaController::class, 'destroy'])->name('carga.destroy');
