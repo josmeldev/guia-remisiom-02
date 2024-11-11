@@ -934,8 +934,8 @@
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control mt-2" id="acopiadora" name="acopiadora" placeholder="" maxlength="35" required>
-                                    <label for="acopiadora" class="form-control-label">Acopiadora</label>
+                                    <input type="text" class="form-control mt-2" id="nombre_campo" name="nombre_campo" placeholder="" maxlength="35" required>
+                                    <label for="nombre_campo" class="form-control-label">Nombre del Campo</label>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <input type="text" class="form-control mt-2" id="ubigeo" name="ubigeo" placeholder="" maxlength="35" required>
@@ -1080,7 +1080,7 @@
                                         <!-- Aquí se cargarán las opciones de los campos -->
                                         @foreach ($campos->reverse() as $campo)
                                             <option value="{{ $campo->id }}" {{ $loop->first ? 'selected' : '' }}>
-                                                {{ $campo->id }} - {{ $campo->acopiadora }}
+                                                {{ $campo->id }} - {{ $campo->nombre_campo }}
                                             </option>
                                         @endforeach
                                     </select>

@@ -10,7 +10,7 @@ class campo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'acopiadora',
+        'nombre_campo',
         'ubigeo',
         'zona',
         'ingenio',

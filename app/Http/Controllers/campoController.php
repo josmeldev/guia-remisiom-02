@@ -75,7 +75,7 @@ class campoController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'acopiadora' => 'required|string',
+            'nombre_campo' => 'required|string',
             'ubigeo' => 'required|string',
             'zona' => 'required|string',
             'ingenio' => 'required|string',
@@ -84,7 +84,7 @@ class campoController extends Controller
 
         // Crear un nuevo campo
         Campo::create([
-            'acopiadora' => $request->acopiadora,
+            'nombre_campo' => $request->nombre_campo,
             'ubigeo' => $request->ubigeo,
             'zona' => $request->zona,
             'ingenio' => $request->ingenio,
@@ -99,7 +99,7 @@ class campoController extends Controller
     {
         // Valida los datos del formulario
         $request->validate([
-            'acopiadora' => 'required|string|max:100',
+            'nombre_campo' => 'required|string|max:100',
             'ubigeo' => 'required|string|max:50',
             'zona' => 'required|string|max:50',
             'ingenio' => 'required|string|max:50',
@@ -109,7 +109,7 @@ class campoController extends Controller
         $campo = Campo::findOrFail($id);
 
         // Actualiza los campos con los datos del formulario
-        $campo->acopiadora = $request->acopiadora;
+        $campo->nombre_campo = $request->nombre_campo;
         $campo->ubigeo = $request->ubigeo;
         $campo->zona = $request->zona;
         $campo->ingenio = $request->ingenio;
@@ -141,7 +141,7 @@ class campoController extends Controller
             ->select(
                 'agricultors.ruc AS ruc_agricultor',
                 'agricultors.razon_social AS razon_social_agricultor',
-                'campos.acopiadora',
+                'campos.nombre_campo',
                 'campos.ubigeo',
                 'campos.zona',
                 'campos.ingenio'
@@ -156,13 +156,13 @@ class campoController extends Controller
             ->join('agricultors', 'cargas.RUC_Agricultor', '=', 'agricultors.id')
             ->select(
                 'campos.id AS id_campo',
-                'campos.acopiadora',
+                'campos.nombre_campo',
                 'campos.ubigeo',
                 'campos.zona',
                 'campos.ingenio',
                 DB::raw('GROUP_CONCAT(agricultors.razon_social SEPARATOR \', \') AS agricultors')
             )
-            ->groupBy('campos.id', 'campos.acopiadora', 'campos.ubigeo', 'campos.zona', 'campos.ingenio')
+            ->groupBy('campos.id', 'campos.nombre_campo', 'campos.ubigeo', 'campos.zona', 'campos.ingenio')
             ->get();
     }
 
@@ -172,8 +172,8 @@ class campoController extends Controller
         $query = Campo::query();
 
         // Aplicar filtros si se proporcionan
-        if ($request->filled('acopiadora')) {
-            $query->where('acopiadora', 'like', '%' . $request->input('acopiadora') . '%');
+        if ($request->filled('nombre_campo')) {
+            $query->where('nombre_campo', 'like', '%' . $request->input('nombre_campo') . '%');
         }
         if ($request->filled('ubigeo')) {
             $query->where('ubigeo', 'like', '%' . $request->input('ubigeo') . '%');

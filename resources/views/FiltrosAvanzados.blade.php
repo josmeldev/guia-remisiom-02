@@ -175,7 +175,7 @@
                             <th id="km_destino">Km de Destino</th>
                             <th id="fecha_carga">Fecha de Carga</th>
                             <th id="fecha_descarga">Fecha de Descarga</th>
-                            <th id="acopiadora">Acopiadora</th>
+                            <th id="nombre_campo">Nombre del Campo</th>
                             <th id="ubigeo">Ubigeo</th>
                             <!--<th id="zona">Zona</th>-->
                             <th id="ingenio">Ingenio</th>
@@ -211,7 +211,7 @@
                                 <td class="km_destino">{{ $dato->km_de_destino }}</td>
                                 <td class="fecha_carga">{{ $dato->fecha_carga }}</td>
                                 <td class="fecha_descarga">{{ $dato->fecha_de_descarga }}</td>
-                                <td class="acopiadora">{{ $dato->acopiadora }}</td>
+                                <td class="nombre_campo">{{ $dato->nombre_campo }}</td>
                                 <td class="ubigeo">{{ $dato->ubigeo }}</td>
                                 <!--<td class="zona">{{ $dato->zona }}</td>-->
                                 <td class="ingenio">{{ $dato->ingenio }}</td>
@@ -251,7 +251,7 @@
                             <th id="km_destino">Km de Destino</th>
                             <th id="fecha_carga">Fecha de Carga</th>
                             <th id="fecha_descarga">Fecha de Descarga</th>
-                            <th id="acopiadora">Acopiadora</th>
+                            <th id="nombre_campo">Nombre del Campo</th>
                             <th id="ubigeo">Ubigeo</th>
                             <!--<th id="zona">Zona</th>-->
                             <th id="ingenio">Ingenio</th>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('campos', function (Blueprint $table) {
             $table->id();
-            $table->string('acopiadora',100);
+            $table->string('nombre_campo',100);
             $table->string('ubigeo',50);
             $table->string('zona',50);
             $table->string('ingenio',50);

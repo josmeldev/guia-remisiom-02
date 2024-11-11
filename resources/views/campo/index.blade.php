@@ -43,7 +43,7 @@
                                         <img src="images/ecologismo.png" alt="Campo" style="width: 30px;height: 30px">
                                     </div>
                                     <div class="col">
-                                        <h4>{{ $campo->acopiadora }}</h4>
+                                        <h4>{{ $campo->nombre_campo }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                         <h6 class="block">Filtrar por:</h6>
                         <div class="row mb-2">
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="acopiadora" placeholder="Acopiadora">
+                                <input type="text" class="form-control" name="nombre_campo" placeholder="Nombre del Campo">
                             </div>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="ubigeo" placeholder="Ubigeo">
@@ -168,8 +168,8 @@
                                             @csrf
                                             <div class="row">
                                                 <div class=" col-md-6 mb-3">
-                                                    <label for="acopiadora" class="form-label">Acopiadora:</label>
-                                                    <input type="text" class="form-control" id="acopiadora" name="acopiadora" required maxlength="50">
+                                                    <label for="nombre_campo" class="form-label">Nombre del Campo:</label>
+                                                    <input type="text" class="form-control" id="nombre_campo" name="nombre_campo" required maxlength="50">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="ubigeo" class="form-label">Ubigeo:</label>
@@ -230,7 +230,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Acopiadora</th>
+                                <th>Nombre del Campo</th>
                                 <th>Ubigeo</th>
                                 <th>Zona</th>
                                 <th>Ingenio</th>
@@ -242,7 +242,7 @@
                             @foreach ($campos as $campo)
                                 <tr>
                                     <td>{{ $campo->id }}</td>
-                                    <td>{{ $campo->acopiadora }}</td>
+                                    <td>{{ $campo->nombre_campo }}</td>
                                     <td>{{ $campo->ubigeo }}</td>
                                     <td>{{ $campo->zona }}</td>
                                     <td>{{ $campo->ingenio }}</td>
@@ -273,8 +273,8 @@
                                                             <!-- Campos para editar -->
                                                             <div class="form-group row">
                                                                 <div class="col-md-6 ">
-                                                                    <label for="acopiadora">Acopiadora:</label>
-                                                                    <input type="text" class="form-control" id="acopiadora" name="acopiadora" value="{{ $campo->acopiadora }}" required>
+                                                                    <label for="nombre_campo">Nombre del Campo:</label>
+                                                                    <input type="text" class="form-control" id="nombre_campo" name="nombre_campo" value="{{ $campo->nombre_campo }}" required>
 
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -370,7 +370,7 @@
                                 <th>#</th>
                                 <th>RUC Agricultor</th>
                                 <th>Razón Social Agricultor</th>
-                                <th>Acopiadora</th>
+                                <th>Nombre del Campo</th>
                                 <th>Ubigeo</th>
                                 <th>Zona</th>
                                 <th>Ingenio</th>
@@ -383,7 +383,7 @@
                                 <td>{{ $contador++ }}</td> <!-- Incrementa el contador en cada fila -->
                                 <td>{{ $campo->ruc_agricultor }}</td>
                                 <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $campo->razon_social_agricultor }}</td>
-                                <td>{{ $campo->acopiadora }}</td>
+                                <td>{{ $campo->nombre_campo }}</td>
                                 <td>{{ $campo->ubigeo }}</td>
                                 <td>{{ $campo->zona }}</td>
                                 <td>{{ $campo->ingenio }}</td>
