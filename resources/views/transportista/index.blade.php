@@ -46,7 +46,7 @@
                 <select class="form-control mr-2  " name="ruc" id="rucSelect">
                     <option value="">Seleccionar RUC</option>
                     @foreach($transportistas as $transportista)
-                    <option value="{{ $transportista->RUC }}" data-razon="{{ $transportista->razon_social }}">{{ $transportista->RUC }}</option>
+                    <option value="{{ $transportista->RUC }}" data-razon="{{ $transportista->RUC }}">{{ $transportista->RUC }}</option>
                     @endforeach
                 </select>
 
@@ -294,7 +294,7 @@
                                                 
                                                 <div class="col-md-6">
                                                     <label for="telefono">Télefono: </label>
-                                                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $transportista->campo    }}" required>
+                                                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $transportista->telefono    }}" required>
 
                                                 </div>
 
@@ -323,7 +323,7 @@
                                                 </div>-->
                                                 <div class="col-md-6">
                                                     <label for="razon_social">Dirección: </label>
-                                                    <input type="text" class="form-control" id="razon_social" name="razon_social" value="{{ $transportista->direccion }}" required>
+                                                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $transportista->direccion }}" required>
 
 
                                                 </div>
