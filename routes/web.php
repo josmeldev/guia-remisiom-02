@@ -17,6 +17,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\facturaController;
 use App\Http\Controllers\notificationController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\AuditController;
 
 Route::middleware(['auth'])->group(function () {
 
@@ -120,6 +121,11 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/usuarios/{id}', [UserController::class, 'eliminar'])->name('usuarios.eliminar');
         Route::get('/usuarios/{id}/editar', [UserController::class, 'editar'])->name('usuarios.editar');
         Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.actualizar');
+        
+        //aduitorias
+        Route::get('/auditorias', [AuditController::class, 'index'])->name('auditorias.index');
+        Route::get('/auditorias/buscar', [AuditController::class, 'buscar'])->name('auditorias.buscar');
+        Route::delete('/auditorias/eliminar-seleccionados', [AuditController::class, 'eliminarSeleccionados'])->name('auditorias.eliminarSeleccionados');
     });
 
 
