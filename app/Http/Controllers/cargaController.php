@@ -86,7 +86,7 @@ class cargaController extends Controller
             'fecha_carga' => 'required|date',
             'fecha_de_descarga' => 'required|date',
             'RUC_Agricultor' => 'required|exists:agricultors,id',
-            'campo_id' => 'required|exists:campos,id',
+            
         ]);
 
         // Crear una nueva instancia de carga con los datos validados y guardarla en la base de datos
@@ -182,10 +182,10 @@ class cargaController extends Controller
     $choferes = Chofer::all();
 
     $agricultores = Agricultor::all();
-    $campos = campo::all();
+    
 
     // Devolver la vista con los resultados de la búsqueda y la lista de conductores
-    return view('carga.index', compact('cargas', 'choferes', 'agricultores', 'campos'));
+    return view('carga.index', compact('cargas', 'choferes', 'agricultores'));
 }
     public function borrarSeleccionados(Request $request)
     {

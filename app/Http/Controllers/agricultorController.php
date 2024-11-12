@@ -98,6 +98,7 @@ class agricultorController extends Controller
                 'cci' => 'required|nullable',
                 'correo_electronico' => 'required|email|max:255|nullable',
                 'telefono' => 'required|nullable',
+                'campo_id' => 'required|exists:campos,id',
             ], [
                 'ruc.unique' => 'El RUC ya está registrado.',
                 'dni.unique' => 'El DNI ya está registrado.',
@@ -116,6 +117,7 @@ class agricultorController extends Controller
                 'cci' => $validatedData['cci'],
                 'correo_electronico' => $validatedData['correo_electronico'],
                 'telefono' => $validatedData['telefono'],
+                'campo_id' => $validatedData['campo_id'],
 
             ]);
 
@@ -145,6 +147,7 @@ class agricultorController extends Controller
             $agricultor->cci = $request->cci;
             $agricultor->correo_electronico = $request->correo_electronico;
             $agricultor->telefono = $request->telefono;
+            $agricultor->campo_id = $request->campo_id;
             // Actualiza los demás campos aquí...
 
             // Guardar los cambios
@@ -216,6 +219,10 @@ class agricultorController extends Controller
             $query->where('telefono', 'LIKE', '%' . $request->input('telefono') . '%');
         }
 
+        if ($request->filled('campo_id')) {
+            $query->where('campo_id', $request->input('campo_id'));
+        }
+
 
 
         // Obtener los resultados de la búsqueda
@@ -239,8 +246,10 @@ class agricultorController extends Controller
         });
         $num_notificaciones = $agricultores_deben->count() + $agricultores_no_deben->count();
 
+        $campos = campo::all();
+
         // Retornar los resultados a la vista
-        return view('agricultor.index', compact('agricultores', 'totalAgricultores', 'agricultores_deben', 'agricultores_no_deben', 'num_notificaciones', 'notifications'));
+        return view('agricultor.index', compact('agricultores', 'totalAgricultores', 'agricultores_deben', 'agricultores_no_deben', 'num_notificaciones', 'notifications', 'campos'));
     }
 
 

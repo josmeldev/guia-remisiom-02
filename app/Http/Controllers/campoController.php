@@ -136,8 +136,8 @@ class campoController extends Controller
     private function obtenerCamposPorAgricultor()
     {
         return DB::table('agricultors')
-            ->join('cargas', 'agricultors.id', '=', 'cargas.RUC_Agricultor')
-            ->join('campos', 'cargas.campo_id', '=', 'campos.id')
+            
+            ->join('campos', 'agricultors.campo_id', '=', 'campos.id')
             ->select(
                 'agricultors.ruc AS ruc_agricultor',
                 'agricultors.razon_social AS razon_social_agricultor',
@@ -152,8 +152,8 @@ class campoController extends Controller
     private function obtenerAgricultoresPorCampo()
     {
         return DB::table('campos')
-            ->join('cargas', 'campos.id', '=', 'cargas.campo_id')
-            ->join('agricultors', 'cargas.RUC_Agricultor', '=', 'agricultors.id')
+            
+            ->join('agricultors', 'campos.id', '=', 'agricultors.campo_id')
             ->select(
                 'campos.id AS id_campo',
                 'campos.nombre_campo',

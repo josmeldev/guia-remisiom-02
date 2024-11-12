@@ -20,6 +20,7 @@ class agricultor extends Model
         'cci',
         'correo_electronico',
         'telefono',
+        'campo_id'
 
     ];
 
@@ -36,5 +37,10 @@ class agricultor extends Model
     public function calcularPagoPendiente()
     {
         // Aquí deberías implementar la lógica para calcular los pagos pendientes para este agricultor
+    }
+
+    public function campo()
+    {
+        return $this->belongsTo(Campo::class);
     }
 }

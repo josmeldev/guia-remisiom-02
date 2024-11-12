@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('cci',20)->nullable();
             $table->string('correo_electronico',50)->nullable();
             $table->string('telefono',50)->nullable();
+            $table->unsignedBigInteger('campo_id');
+            $table->foreign('campo_id')->references('id')->on('campos')->onDelete('cascade');
             $table->timestamps();
         });
     }

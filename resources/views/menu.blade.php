@@ -935,6 +935,19 @@
                                     maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
                                 <label for="telefono" class="form-control-label">Teléfono:</label>
                             </div>
+                            <!-- se agrega campo_id-->
+                            <div class="form-group">
+                                    <select class="form-control mt-2" id="campo_id" name="campo_id" required>
+                                        <option value="" selected disabled>Seleccionar</option>
+                                        <!-- Aquí se cargarán las opciones de los campos -->
+                                        @foreach ($campos->reverse() as $campo)
+                                            <option value="{{ $campo->id }}" {{ $loop->first ? 'selected' : '' }}>
+                                                {{ $campo->id }} - {{ $campo->nombre_campo }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="campo_id" class="form-control-label">Campo:</label>
+                            </div>
                             
 
                             <div class="form-group row">
@@ -1104,18 +1117,7 @@
                                     <label for="RUC_Agricultor" class="form-control-label">RUC Agricultor:</label>
                                 </div>
 
-                                <div class="col mt-2">
-                                    <select class="form-control mt-2" id="campo_id" name="campo_id" required>
-                                        <option value="" selected disabled>Seleccionar</option>
-                                        <!-- Aquí se cargarán las opciones de los campos -->
-                                        @foreach ($campos->reverse() as $campo)
-                                            <option value="{{ $campo->id }}" {{ $loop->first ? 'selected' : '' }}>
-                                                {{ $campo->id }} - {{ $campo->nombre_campo }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <label for="campo_id" class="form-control-label">Campo:</label>
-                                </div>
+                                
 
                             </div>
 

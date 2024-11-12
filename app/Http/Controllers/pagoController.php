@@ -134,6 +134,7 @@ class pagoController extends Controller
         cci,
         correo_eletronico,
         telefono,
+        campo_id,
         guia_id,
         saldo_pendiente
     FROM (
@@ -150,6 +151,7 @@ class pagoController extends Controller
             a.cci,
             a.correo_eletronico,
             a.telefono,
+            a.campo_id,
             g.id AS guia_id,
             SUM(p.monto - ((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario - p.adelanto)) AS saldo_pendiente
         FROM
@@ -161,7 +163,7 @@ class pagoController extends Controller
         LEFT JOIN
             pagos p ON g.id = p.guia_id
         GROUP BY
-            a.id, a.ruc, a.razon_social, a.direccion, a.representante, a.dni, a.numero_cuenta, a.banco, a.cci, a.correo_electronico, a.telefono g.id
+            a.id, a.ruc, a.razon_social, a.direccion, a.representante, a.dni, a.numero_cuenta, a.banco, a.cci, a.correo_electronico, a.telefono,a.campo_id, g.id
         HAVING
             SUM(p.monto - ((c.total_carga_bruta - c.total_material_extrano - c.tara) * p.precio_unitario - p.adelanto)) < 0
     ) AS subquery

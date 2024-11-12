@@ -55,7 +55,7 @@
                 <div class="text-container" style="border-bottom: 1px solid white">
                     <p>{{ $limitedText }}</p>
                 </div>
-                <a href="/agricultotores" class="more-link text-white">
+                <a href="/agricultores" class="more-link text-white">
                     Ver más <i class="fas fa-chevron-right"></i>
                 </a>
             </div>

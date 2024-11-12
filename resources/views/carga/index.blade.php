@@ -167,17 +167,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="campo_id" class="form-label">Campo:</label>
-                                            <select name="campo_id" id="campo_id" class="form-control" required>
-                                                <option value="">Seleccionar Campo</option>
-                                                @foreach ($campos as $campo)
-                                                    <option value="{{ $campo->id }}">{{ $campo->zona }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

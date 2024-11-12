@@ -23,9 +23,9 @@ return new class extends Migration
             $table->date('fecha_carga');
             $table->date('fecha_de_descarga');
             $table->unsignedBigInteger('RUC_Agricultor');
-            $table->unsignedBigInteger('campo_id');
+            //$table->unsignedBigInteger('campo_id');
             $table->foreign('RUC_Agricultor')->references('id')->on('agricultors')->onDelete('cascade');
-            $table->foreign('campo_id')->references('id')->on('campos')->onDelete('cascade');
+            //$table->foreign('campo_id')->references('id')->on('campos')->onDelete('cascade');
            
 
             $table->timestamps();

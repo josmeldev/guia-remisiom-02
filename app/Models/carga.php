@@ -20,7 +20,7 @@ class carga extends Model
         'fecha_carga',
         'fecha_de_descarga',
         'RUC_Agricultor',
-        'campo_id'
+        //'campo_id'
     ];
 
     public function agricultor()
@@ -28,10 +28,7 @@ class carga extends Model
         return $this->belongsTo(Agricultor::class, 'RUC_Agricultor');
     }
 
-    public function campo()
-    {
-        return $this->belongsTo(Campo::class);
-    }
+    
 
     public function guiaDeRemision()
     {
