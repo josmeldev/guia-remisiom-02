@@ -150,7 +150,7 @@ class guiaController extends Controller
                 'producto' => 'required',
                 'nro_factura' => 'nullable',
                 'estado' => 'required',
-                'ruc_agricultor' => 'required',
+                'ruc_agricultor' => 'nullable',
                 'ruc_transportista' => 'required',
                 'carga_id' => 'required|exists:cargas,id',
             ]);
