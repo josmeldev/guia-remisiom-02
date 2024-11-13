@@ -245,23 +245,14 @@
                             </a>
                         </li>
                         @endrole
-                        <li>
-                            <a class="dropdown-item sidebar-link div-icon" href="/facturas">
-                                <i class="bi bi-file-earmark-text"></i>
-                                <span class="icon-text"> Facturas</span>
-                            </a>
-                        </li>
+                        
 
                         
                     </ul>
 
                 </li>
 
-                <li>
-                    <a href="/ajustes" class="sidebar-link div-icon">
-                        <i class="bi bi-gear sidebar-icon"></i><span class="icon-text"> Ajustes</span>
-                    </a>
-                </li>
+                
 
             </ul>
 
