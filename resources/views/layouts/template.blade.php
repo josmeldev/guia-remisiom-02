@@ -237,12 +237,14 @@
                         @role('Administrador')
                         <li><a class="dropdown-item sidebar-link div-icon" href="/usuarios"><i class="bi bi-people"></i><span class="icon-text"> Usuarios</span></a></li>
                         @endrole
+                        @role('Administrador')
                         <li>
                             <a class="dropdown-item sidebar-link div-icon" href="/auditorias">
                                 <i class="bi bi-journal-text"></i>
                                 <span class="icon-text"> Auditorías</span>
                             </a>
                         </li>
+                        @endrole
                         <li>
                             <a class="dropdown-item sidebar-link div-icon" href="/facturas">
                                 <i class="bi bi-file-earmark-text"></i>
