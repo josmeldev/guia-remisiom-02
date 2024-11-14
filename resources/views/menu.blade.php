@@ -1234,12 +1234,12 @@
                                         <select name="guia_id" id="guia_id" class="form-control mt-2">
                                             <option value="">Seleccionar Guía</option>
                                             @foreach ($guiasP->reverse() as $guia)
-                                                <option value="{{ $guia->id }}" {{ $loop->first ? 'selected' : '' }}>{{ $guia->id }}</option>
+                                                <option value="{{ $guia->id }}" {{ $loop->first ? 'selected' : '' }}>{{ $guia->id }} - {{ $guia->agricultor->campo->nombre_campo ?? 'Campo no asignado' }}</option>
                                             @endforeach
                                         </select>
 
 
-                                        <label for="guia_id" class="form-control-label">Guia ID:</label>
+                                        <label for="guia_id" class="form-control-label">Guia ID - Campo</label>
                                     </div>
                                     <div class="col">
                                         <select name="Metodo_Pago" class="form-control mt-2 " id="metodo_pago" onchange="mostrarCamposAdicionales()">
