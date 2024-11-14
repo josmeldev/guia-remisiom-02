@@ -433,43 +433,50 @@ class pagoController extends Controller
 
 
 
-    public function store(Request $request)
-    {
-        try {
-            // Validar los datos del formulario
-            $request->validate([
-                'Adelanto' => 'required|numeric',
-                'Metodo_Pago' => 'required|string',
-                'Nro_Operacion' => 'string|nullable',
-                'Tipo_Pago' => 'string|nullable',
-                'Monto' => 'numeric|nullable',
-                'Precio_Unitario' => 'required|numeric',
-                'guia_id' => 'required|exists:guias,id'
-            ]);
-
-            // Crear un nuevo pago
-            Pago::create([
-                'Adelanto' => $request->Adelanto,
-                'Metodo_Pago' => $request->Metodo_Pago,
-                'Nro_Operacion' => $request->Nro_Operacion,
-                'Tipo_Pago' => $request->Tipo_Pago,
-                'Monto' => $request->Monto,
-                'Precio_Unitario' => $request->Precio_Unitario,
-                'guia_id' => $request->guia_id
-            ]);
-
-            // Redireccionar con mensaje de éxito
-            return redirect()->back()->with('success', '¡El pago ha sido registrado correctamente!');
-        } catch (QueryException $e) {
-            // Manejar cualquier error de base de datos
-            Log::error('Error al guardar el pago en la base de datos: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Ocurrió un error al guardar el pago en la base de datos. Por favor, inténtalo de nuevo.');
-        } catch (\Exception $e) {
-            // Manejar cualquier otra excepción
-            Log::error('Error inesperado al guardar el pago: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo o contacta al administrador.');
-        }
-    }
+            
+            public function store(Request $request)
+            {
+                try {
+                    // Validar los datos del formulario
+                    $request->validate([
+                        'Adelanto' => 'required|numeric',
+                        'Metodo_Pago' => 'required|string',
+                        'Nro_Operacion' => 'string|nullable',
+                        'Tipo_Pago' => 'string|nullable',
+                        'Monto' => 'numeric|nullable',
+                        'Precio_Unitario' => 'required|numeric',
+                        'guia_id' => 'required|exists:guias,id|unique:pagos,guia_id',
+                    ]);
+            
+                    // Crear un nuevo pago
+                    Pago::create([
+                        'Adelanto' => $request->Adelanto,
+                        'Metodo_Pago' => $request->Metodo_Pago,
+                        'Nro_Operacion' => $request->Nro_Operacion,
+                        'Tipo_Pago' => $request->Tipo_Pago,
+                        'Monto' => $request->Monto,
+                        'Precio_Unitario' => $request->Precio_Unitario,
+                        'guia_id' => $request->guia_id
+                    ]);
+            
+                    // Redireccionar con mensaje de éxito
+                    return redirect()->back()->with('success', '¡El pago ha sido registrado correctamente!');
+                } catch (QueryException $e) {
+                    // Manejar cualquier error de base de datos
+                    Log::error('Error al guardar el pago en la base de datos: ' . $e->getMessage());
+                    return redirect()->back()->with('error', 'Ocurrió un error al guardar el pago en la base de datos. Por favor, inténtalo de nuevo.');
+                } catch (\Illuminate\Validation\ValidationException $e) {
+                    // Capturar la excepción de validación y personalizar el mensaje de error
+                    if ($e->validator->errors()->has('guia_id')) {
+                        return redirect()->back()->with('error', 'Ya haz registrado esta guia en la lista de pagos.');
+                    }
+                    return redirect()->back()->withErrors($e->validator)->withInput();
+                } catch (\Exception $e) {
+                    // Manejar cualquier otra excepción
+                    Log::error('Error inesperado al guardar el pago: ' . $e->getMessage());
+                    return redirect()->back()->with('error', 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo o contacta al administrador.');
+                }
+            }
 
 
     public function borrarSeleccionados(Request $request)
