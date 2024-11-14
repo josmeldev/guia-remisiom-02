@@ -877,22 +877,43 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('agregar_pago', ['agricultor_id' => $pago->agricultor_id]) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="guia_id" value="{{ $pago->guia_id }}">
-                                        <div class="form-group mb-0">
-                                            <label for="monto_pago" class="text-danger">
-                                                Monto a Pagar: {{ abs($pago->saldo_pendiente) }}
-                                            </label>
-                                            <div class="input-group">
-                                                <input type="number" name="monto_pago" id="monto_pago" step="0.01" class="form-control form-control-sm" placeholder="Ingrese...">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-success btn-sm mt-2"><i class="fas fa-plus-circle"></i> Agregar</button>
-                                    </form>
+                                <form id="agregarPagoForm{{ $pago->id }}" action="{{ route('agregar_pago', ['agricultor_id' => $pago->agricultor_id]) }}" method="POST">
+    @csrf
+    <input type="hidden" name="guia_id" value="{{ $pago->guia_id }}">
+    <div class="form-group mb-0">
+        <label for="monto_pago" class="text-danger">
+            Monto a Pagar: <span id="saldoPendiente{{ $pago->id }}">{{ abs($pago->saldo_pendiente) }}</span>
+        </label>
+        <div class="input-group">
+            <input type="number" name="monto_pago" id="monto_pago{{ $pago->id }}" step="0.01" class="form-control form-control-sm" placeholder="Ingrese...">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+            </div>
+        </div>
+        <div id="errorMonto{{ $pago->id }}" class="text-danger mt-2" style="display: none;">El monto del pago no puede exceder el saldo pendiente.</div>
+    </div>
+    <button type="submit" class="btn btn-success btn-sm mt-2"><i class="fas fa-plus-circle"></i> Agregar</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('agregarPagoForm{{ $pago->id }}');
+        var montoInput = document.getElementById('monto_pago{{ $pago->id }}');
+        var saldoPendiente = parseFloat(document.getElementById('saldoPendiente{{ $pago->id }}').innerText);
+        var errorMonto = document.getElementById('errorMonto{{ $pago->id }}');
+
+        form.addEventListener('submit', function(event) {
+            var montoPago = parseFloat(montoInput.value);
+
+            if (montoPago > saldoPendiente) {
+                event.preventDefault();
+                errorMonto.style.display = 'block';
+            } else {
+                errorMonto.style.display = 'none';
+            }
+        });
+    });
+</script>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
