@@ -52,87 +52,7 @@
                 <i class="fas fa-search"></i>
             </button>
         </div>
-        <div class="notify">
-            <div class="notifications">
-                <div class="notification-item" id="notificationIcon">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-count" id="notificationCount">{{ $num_notificaciones }}</span> <!-- Número de notificaciones -->
-                </div>
-                <!-- Popup de notificaciones -->
-                <div class="notification-popup" id="notificationPopup">
-                    <div class="card-header text-center">
-                        <span><b>Notificaciones</b></span>
-                    </div>
-                    <div class="card-body">
-                        @if($agricultores_deben->isNotEmpty())
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgricultoresD" aria-expanded="false" aria-controls="collapseAgricultoresD">
-                            <i class="fas fa-chevron-down"></i> Agricultores con saldo pendiente
-                        </button>
-                        <div class="collapse mt-3" id="collapseAgricultoresD">
-                            <span><b>Agricultores con saldo pendiente mayor a cero:</b></span>
-                            <ul>
-                                @foreach ($agricultores_deben as $agricultor)
-                                <li>
-                                    <span>Hola {{ Auth::user()->name }}, {{ $agricultor->agricultor_nombre }} tiene saldo pendiente.</span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-
-                        @if($agricultores_no_deben->isNotEmpty())
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgricultores" aria-expanded="false" aria-controls="collapseAgricultores">
-                            <i class="fas fa-chevron-down"></i> Agricultores Pagados
-                        </button>
-                        <div class="collapse mt-3" id="collapseAgricultores">
-                            <span><b>Agricultores con saldo pendiente igual a cero:</b></span>
-                            <ul>
-                                @foreach ($agricultores_no_deben as $agricultor)
-                                <li>
-                                    <span>Hola {{ Auth::user()->name }}, {{ $agricultor->agricultor_nombre }} no tiene saldo pendiente.</span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                    </div>
-                    <footer>
-                        <a href="/ver-todas-las-notificaciones">Historial de notificaciones</a>
-                    </footer>
-                </div>
-
-
-            </div>
-
-
-            <div class="notifications">
-                <div class="notification-item" id="notificationIcon-l">
-                    <i class="fas fa-envelope"></i>
-                    <span class="notification-count" id="notificationCount-l">4</span> <!-- Número de notificaciones -->
-                </div>
-
-                <div class="notification-popup" id="notificationPopup-l">
-                    <div class="card-header text-center">
-                        <span><b>Mensajes</b></span>
-                    </div>
-                    <!-- Contenido de las notificaciones -->
-                    <ul id="notificationList-l">
-                        <li>Notificación 1 <button class="btn btn-sm btn-danger ml-2" onclick="borrarNotificacion(this)">Borrar</button></li>
-                        <li>Notificación 2 <button class="btn btn-sm btn-danger ml-2" onclick="borrarNotificacion(this)">Borrar</button></li>
-                        <li>Notificación 3 <button class="btn btn-sm btn-danger ml-2" onclick="borrarNotificacion(this)">Borrar</button></li>
-                        <li>Notificación 3 <button class="btn btn-sm btn-danger ml-2" onclick="borrarNotificacion(this)">Borrar</button></li>
-                    </ul>
-                    <footer>
-                        <a href="/ver-todas-las-notificaciones">Mensajes history</a>
-                    </footer>
-                </div>
-            </div>
-
-            <a href="/politicas-de-privacidad" title="Políticas de Privacidad">
-                <i class="fas fa-exclamation-circle"></i>
-            </a>
-
-        </div>
+        
         <div class="user-container ">
             <div class="user text-center" onclick="toggleUserContent()" id="togglepro">
                 <img src="{{ asset(Auth::user()->profile_photo_path) }}" alt="Usuario">
@@ -280,47 +200,7 @@
 
 
             @yield('content')
-            <footer class="footer">
-                <div class="container">
-                    <div class="row">
-                        <!-- About Us Section -->
-                        <div class="col-md-4">
-                            <h5>About Us</h5>
-                            <p class="dedication">We are a company dedicated to providing the best products and services to our customers. Your satisfaction is our priority.</p>
-                        </div>
-                        <!-- Quick Links Section -->
-                        <div class="col-md-4">
-                            <h5>Quick Links</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                        <!-- Contact Us Section -->
-                        <div class="col-md-4">
-                            <h5>Contact Us</h5>
-                            <address>
-                                123 Main Street, Anytown, USA<br>
-                                Email: info@company.com<br>
-                                Phone: (123) 456-7890
-                            </address>
-                            <div class="social-icons">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col text-center ">
-                            <p class="mb-0 rights-r">&copy; 2024 Your Company. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            
 
 
         </main>
